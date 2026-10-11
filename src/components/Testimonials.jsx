@@ -26,7 +26,7 @@ export default function Testimonials() {
     }
   ];
 
-  return (
+  return (false &&
     <section class="sec">
       <div class="wrap">
         <span class="pill">Testimonials</span>
