@@ -1,6 +1,13 @@
 import React from 'react';
 
-export default function Hero() {
+export default function Hero({ onContactClick }) {
+  const handleContactClick = (e) => {
+    if (onContactClick) {
+      e.preventDefault();
+      onContactClick();
+    }
+  };
+
   return (
     <header class="hero" id="home">
       <img
@@ -19,7 +26,11 @@ export default function Hero() {
             <a class="btn btn-teal" href="#services">
               See Our HSE Portfolio
             </a>
-            <a class="btn btn-dark" href="#contact">
+            <a
+              class="btn btn-dark"
+              href="#contact"
+              onClick={handleContactClick}
+            >
               Contact Us
             </a>
           </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Metrics from './components/Metrics';
@@ -9,13 +9,19 @@ import Solutions from './components/Solutions';
 import Testimonials from './components/Testimonials';
 import Faq from './components/Faq';
 import Contact from './components/Contact';
+import ContactModal from './components/ContactModal';
 import Footer from './components/Footer';
 
 export default function App() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
+  const openContactModal = () => setIsContactModalOpen(true);
+  const closeContactModal = () => setIsContactModalOpen(false);
+
   return (
     <>
-      <Navbar />
-      <Hero />
+      <Navbar onContactClick={openContactModal} />
+      <Hero onContactClick={openContactModal} />
       <Metrics />
       <About />
 
@@ -27,6 +33,7 @@ export default function App() {
         primaryBtnLink="#contact"
         secondaryBtnText="Contact Us"
         secondaryBtnLink="#contact"
+        onSecondaryClick={openContactModal}
         imageSrc="/extracted_assets/image4_14_197.png"
         imageAlt="E-Procurement Platform Concept Graphic"
       />
@@ -42,6 +49,7 @@ export default function App() {
         primaryBtnLink="#contact"
         secondaryBtnText="Contact Us"
         secondaryBtnLink="#contact"
+        onSecondaryClick={openContactModal}
         imageSrc="/extracted_assets/image15_14_197.jpeg"
         imageAlt="Warehouse Logistics Management Graphic"
         isWide={true}
@@ -57,6 +65,7 @@ export default function App() {
         primaryBtnLink="#contact"
         secondaryBtnText="Contact Us"
         secondaryBtnLink="#contact"
+        onSecondaryClick={openContactModal}
         imageSrc="/extracted_assets/image4_14_197.png"
         imageAlt="E-Procurement Platform Concept Graphic"
       />
@@ -64,6 +73,12 @@ export default function App() {
       <Faq />
       <Contact />
       <Footer />
+
+      {/* Contact Us Popup Modal */}
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={closeContactModal}
+      />
     </>
   );
 }
