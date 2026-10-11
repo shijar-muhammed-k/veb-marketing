@@ -1008,6 +1008,17 @@
             border: 1px solid #fecaca;
         }
 
+        .form-status a {
+            color: inherit;
+            text-decoration: underline;
+            font-weight: 600;
+            transition: opacity 0.2s ease;
+        }
+
+        .form-status a:hover {
+            opacity: 0.8;
+        }
+
         .form-input-error {
             border-color: #ef4444 !important;
         }

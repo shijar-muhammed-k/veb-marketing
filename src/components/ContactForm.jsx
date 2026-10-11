@@ -86,7 +86,7 @@ export default function ContactForm({ onSuccess, isModal = false }) {
     };
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://129.121.137.184:3001/send-mail';
+      const apiUrl = import.meta.env.VITE_API_URL || 'https://vebqatar.com/send-mail';
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
@@ -123,7 +123,17 @@ export default function ContactForm({ onSuccess, isModal = false }) {
       setStatus({
         loading: false,
         success: false,
-        message: 'Unable to reach the mail server. Please ensure the server is running on http://localhost:3001.'
+        message: (
+          <span>
+            Unable to reach the mail server. Please try again later or contact directly at{' '}
+            <a
+              href="mailto:vebqatar@gmail.com"
+              style={{ color: 'inherit', textDecoration: 'underline', fontWeight: 600 }}
+            >
+              vebqatar@gmail.com
+            </a>
+          </span>
+        )
       });
     }
   };
