@@ -57,6 +57,8 @@ export default function App() {
 
       <Testimonials />
 
+      <Faq />
+
       {/* CTA Banner 3 */}
       <CtaBanner
         title="Ready to experience the future of E-Procurement?"
@@ -70,7 +72,6 @@ export default function App() {
         imageAlt="E-Procurement Platform Concept Graphic"
       />
 
-      <Faq />
       <Contact />
       <Footer />
 

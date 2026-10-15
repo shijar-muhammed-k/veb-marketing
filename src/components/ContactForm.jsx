@@ -127,10 +127,10 @@ export default function ContactForm({ onSuccess, isModal = false }) {
           <span>
             Unable to reach the mail server. Please try again later or contact directly at{' '}
             <a
-              href="mailto:vebqatar@gmail.com"
+              href="mailto:info@vebqatar.com"
               style={{ color: 'inherit', textDecoration: 'underline', fontWeight: 600 }}
             >
-              vebqatar@gmail.com
+              info@vebqatar.com
             </a>
           </span>
         )
