@@ -73,7 +73,7 @@ export default function Footer() {
         </div>
 
         <div class="footer-bottom">
-          &copy; 2026 VEB Platform. All rights reserved. Enterprise Facility Management & Procurement Solutions.
+          &copy; 2026 VEB - Facility Management System. All rights reserved. Enterprise Facility Management & Procurement Solutions.
         </div>
       </div>
     </footer>
