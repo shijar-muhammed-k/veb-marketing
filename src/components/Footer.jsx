@@ -39,21 +39,21 @@ export default function Footer() {
             </div> */}
           </div>
 
-          {/* <div>
-            <div class="footer-heading">Where We Are</div>
+          <div>
+            <div className="footer-heading">Where We Are</div>
             <p style={{ color: '#ffffff', fontWeight: 600, marginBottom: '4px' }}>
               Head Office
             </p>
             <p style={{ lineHeight: 1.6, color: '#8193a5' }}>
-              Your Company Name
+              Al Matar Center
               <br />
-              Level 8, One Canada Square
+              Building 272, 1st Floor
               <br />
-              Canary Wharf, London E14 5AB
+              Office 107 - AL 02
               <br />
-              United Kingdom
+              Matar Qadeem
             </p>
-          </div> */}
+          </div>
 
           <div>
             <div class="footer-heading">Connect Us</div>
