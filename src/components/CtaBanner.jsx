@@ -6,7 +6,7 @@ export default function CtaBanner({
   primaryBtnText = 'Join now for free.',
   primaryBtnLink = '#contact',
   onPrimaryClick,
-  secondaryBtnText = 'Contact Us',
+  secondaryBtnText = null,
   secondaryBtnLink = '#contact',
   onSecondaryClick,
   imageSrc,

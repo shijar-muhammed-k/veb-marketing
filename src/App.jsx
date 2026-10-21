@@ -30,10 +30,7 @@ export default function App() {
         title="Ready to experience the future of E-Procurement?"
         description="Join early. Skip the line. Free onboarding + 6 months premium – on us."
         primaryBtnText="Get Early Access"
-        primaryBtnLink="#contact"
-        secondaryBtnText="Contact Us"
-        secondaryBtnLink="#contact"
-        onSecondaryClick={openContactModal}
+        onPrimaryClick={openContactModal}
         imageSrc="/extracted_assets/image4_14_197.png"
         imageAlt="E-Procurement Platform Concept Graphic"
       />
@@ -46,10 +43,7 @@ export default function App() {
         title="Do you provide any of the above services or products?"
         description="Your next opportunity is here. Become a trusted supplier with us."
         primaryBtnText="Join now for free."
-        primaryBtnLink="#contact"
-        secondaryBtnText="Contact Us"
-        secondaryBtnLink="#contact"
-        onSecondaryClick={openContactModal}
+        onPrimaryClick={openContactModal}
         imageSrc="/extracted_assets/image15_14_197.jpeg"
         imageAlt="Warehouse Logistics Management Graphic"
         isWide={true}
@@ -64,10 +58,7 @@ export default function App() {
         title="Ready to experience the future of E-Procurement?"
         description="Join early. Skip the line. Free onboarding + 6 months premium – on us."
         primaryBtnText="Get Early Access"
-        primaryBtnLink="#contact"
-        secondaryBtnText="Contact Us"
-        secondaryBtnLink="#contact"
-        onSecondaryClick={openContactModal}
+        onPrimaryClick={openContactModal}
         imageSrc="/extracted_assets/image4_14_197.png"
         imageAlt="E-Procurement Platform Concept Graphic"
       />
