@@ -66,27 +66,27 @@ export default function Navbar({
               Solutions
             </a>
           </li>
-        </ul>
 
-        <div className="nav-actions">
-          <a
-            className="btn btn-outline"
-            style={{ minWidth: '150px' }}
-            href={loginUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Login
-          </a>
-          <a
-            className="btn btn-dark"
-            style={{ minWidth: '150px' }}
-            href="#contact"
-            onClick={handleContactClick}
-          >
-            Contact Us
-          </a>
-        </div>
+          <div className="nav-actions">
+            <a
+              className="btn btn-outline"
+              style={{ minWidth: '150px' }}
+              href={loginUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Login
+            </a>
+            <a
+              className="btn btn-dark"
+              style={{ minWidth: '150px' }}
+              href="#contact"
+              onClick={handleContactClick}
+            >
+              Contact Us
+            </a>
+          </div>
+        </ul>
       </div>
     </nav>
   );
