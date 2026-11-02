@@ -1,6 +1,11 @@
 import React from 'react';
 
-export default function Navbar({ onContactClick, onNavigate, currentRoute = '/' }) {
+export default function Navbar({
+  onContactClick,
+  onNavigate,
+  currentRoute = '/',
+  loginUrl = import.meta.env.VITE_LOGIN_URL || 'https://app.vebqatar.com/login'
+}) {
   const handleContactClick = (e) => {
     if (onContactClick) {
       e.preventDefault();
@@ -39,6 +44,7 @@ export default function Navbar({ onContactClick, onNavigate, currentRoute = '/' 
         >
           <img src="/assets/veb-logo.svg" alt="VEB Logo" style={{ width: '125px' }} />
         </a>
+
         <ul className="nav-links">
           <li>
             <a href="/#home" onClick={(e) => handleNavLink(e, '/', 'home')}>
@@ -60,16 +66,27 @@ export default function Navbar({ onContactClick, onNavigate, currentRoute = '/' 
               Solutions
             </a>
           </li>
-          <li>
-            <a
-              className="btn btn-dark"
-              href="#contact"
-              onClick={handleContactClick}
-            >
-              Contact Us
-            </a>
-          </li>
         </ul>
+
+        <div className="nav-actions">
+          <a
+            className="btn btn-outline"
+            style={{ minWidth: '150px' }}
+            href={loginUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Login
+          </a>
+          <a
+            className="btn btn-dark"
+            style={{ minWidth: '150px' }}
+            href="#contact"
+            onClick={handleContactClick}
+          >
+            Contact Us
+          </a>
+        </div>
       </div>
     </nav>
   );
