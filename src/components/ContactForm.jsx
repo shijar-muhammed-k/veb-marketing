@@ -69,6 +69,7 @@ export default function ContactForm({ onSuccess, isModal = false }) {
     }
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -78,32 +79,71 @@ export default function ContactForm({ onSuccess, isModal = false }) {
 
     setStatus({ loading: true, success: false, message: '' });
 
-    const payload = {
+    const phone = `+974 ${formData.phone.trim()}`;
+
+    const leadPayload = {
       name: formData.name.trim(),
       email: formData.email.trim(),
-      contactNumber: `+974 ${formData.phone.trim()}`,
+      phone,
+      message: formData.message.trim(),
+      company: ''
+    };
+
+    const mailPayload = {
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      contactNumber: phone,
       message: formData.message.trim()
     };
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'https://vebqatar.com/send-mail';
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      });
+      const leadsApiUrl =
+        'https://dev.vebqatar.com/api/accounts/leads/';
 
-      const data = await response.json().catch(() => ({}));
+      const mailApiUrl =
+        'https://vebqatar.com/send-mail';
 
-      if (response.ok && data.success !== false) {
+      // Call both APIs simultaneously
+      const [leadResponse, mailResponse] = await Promise.all([
+        fetch(leadsApiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(leadPayload)
+        }),
+
+        fetch(mailApiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(mailPayload)
+        })
+      ]);
+
+      const [leadData, mailData] = await Promise.all([
+        leadResponse.json().catch(() => ({})),
+        mailResponse.json().catch(() => ({}))
+      ]);
+
+      const leadSuccess = leadResponse.ok;
+      const mailSuccess = mailResponse.ok && mailData.success !== false;
+
+      if (leadSuccess && mailSuccess) {
         setStatus({
           loading: false,
           success: true,
-          message: data.message || 'Your message has been sent successfully.'
+          message: 'Your enquiry has been submitted successfully.'
         });
-        setFormData({ name: '', email: '', phone: '', message: '' });
+
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          message: ''
+        });
+
         setErrors({});
 
         if (onSuccess) {
@@ -111,32 +151,44 @@ export default function ContactForm({ onSuccess, isModal = false }) {
             onSuccess();
           }, 1500);
         }
+
+      } else if (leadSuccess && !mailSuccess) {
+        setStatus({
+          loading: false,
+          success: false,
+          message: 'Your enquiry was saved, but the notification email could not be sent.'
+        });
+
+      } else if (!leadSuccess && mailSuccess) {
+        setStatus({
+          loading: false,
+          success: false,
+          message: 'Email sent, but your enquiry could not be saved. Please contact us.'
+        });
+
       } else {
         setStatus({
           loading: false,
           success: false,
-          message: data.message || 'Failed to send your message. Please try again later.'
+          message:
+            leadData.detail ||
+            leadData.message ||
+            mailData.message ||
+            'Unable to submit your enquiry. Please try again.'
         });
       }
+
     } catch (err) {
-      console.error('API submission error:', err);
+      console.error('Contact form submission error:', err);
+
       setStatus({
         loading: false,
         success: false,
-        message: (
-          <span>
-            Unable to reach the mail server. Please try again later or contact directly at{' '}
-            <a
-              href="mailto:info@vebqatar.com"
-              style={{ color: 'inherit', textDecoration: 'underline', fontWeight: 600 }}
-            >
-              info@vebqatar.com
-            </a>
-          </span>
-        )
+        message: 'Unable to reach the server. Please try again later.'
       });
     }
   };
+
 
   return (
     <form onSubmit={handleSubmit} noValidate>
