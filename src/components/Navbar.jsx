@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Navbar({ onContactClick }) {
+export default function Navbar({ onContactClick, onNavigate, currentRoute = '/' }) {
   const handleContactClick = (e) => {
     if (onContactClick) {
       e.preventDefault();
@@ -8,20 +8,61 @@ export default function Navbar({ onContactClick }) {
     }
   };
 
+  const handleNavLink = (e, path, sectionId) => {
+    e.preventDefault();
+    if (currentRoute !== '/') {
+      if (onNavigate) {
+        onNavigate('/', sectionId);
+      } else {
+        window.location.href = `/${sectionId ? '#' + sectionId : ''}`;
+      }
+    } else {
+      if (sectionId) {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+  };
+
   return (
     <nav>
-      <div class="nav-inner">
-        <a class="nav-logo" href="#" aria-label="VEB Home">
+      <div className="nav-inner">
+        <a
+          className="nav-logo"
+          href="/"
+          onClick={(e) => handleNavLink(e, '/', '')}
+          aria-label="VEB Home"
+        >
           <img src="/assets/veb-logo.svg" alt="VEB Logo" style={{ width: '125px' }} />
         </a>
-        <ul class="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#services">Solutions</a></li>
+        <ul className="nav-links">
+          <li>
+            <a href="/#home" onClick={(e) => handleNavLink(e, '/', 'home')}>
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="/#about" onClick={(e) => handleNavLink(e, '/', 'about')}>
+              About Us
+            </a>
+          </li>
+          <li>
+            <a href="/#features" onClick={(e) => handleNavLink(e, '/', 'features')}>
+              Features
+            </a>
+          </li>
+          <li>
+            <a href="/#services" onClick={(e) => handleNavLink(e, '/', 'services')}>
+              Solutions
+            </a>
+          </li>
           <li>
             <a
-              class="btn btn-dark"
+              className="btn btn-dark"
               href="#contact"
               onClick={handleContactClick}
             >
