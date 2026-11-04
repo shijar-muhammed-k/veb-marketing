@@ -1521,9 +1521,10 @@ html[dir="rtl"] body {
 [dir="rtl"] .hero-bg-img {
     right: auto;
     left: 0;
-    transform: scaleX(-1);
-    -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 1), transparent);
-    mask-image: linear-gradient(to left, rgba(0, 0, 0, 1), transparent);
+    transform: none;
+    object-position: center center;
+    -webkit-mask-image: linear-gradient(to left, transparent 0%, rgba(0, 0, 0, 0.15) 12%, rgba(0, 0, 0, 0.8) 32%, #000 55%);
+    mask-image: linear-gradient(to left, transparent 0%, rgba(0, 0, 0, 0.15) 12%, rgba(0, 0, 0, 0.8) 32%, #000 55%);
 }
 
 /* Stats Bar in RTL */

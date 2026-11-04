@@ -24,7 +24,8 @@ export const translations = {
       description: 'Manage your facilities smarter with a centralized system that simplifies sourcing, purchasing, approvals, and payments – all in one place.',
       seePortfolio: 'See Our HSE Portfolio',
       contactUs: 'Contact Us',
-      bgImgAlt: 'Facility Management Hologram Visual'
+      bgImgAlt: 'Facility Management Hologram Visual',
+      bgImag: "/extracted_assets/image1_14_197.png"
     },
     metrics: {
       pill: 'Why VEB',
@@ -323,7 +324,8 @@ export const translations = {
       description: 'قم بإدارة مرافقك بذكاء أكبر عبر نظام مركزي موحد يُبسّط عمليات التوريد والشراء والاعتمادات والمدفوعات – كل ذلك في مكان واحد.',
       seePortfolio: 'استعرض خدمات وحلول المرافق',
       contactUs: 'تواصل معنا',
-      bgImgAlt: 'عرض بصري مجسم لإدارة المرافق'
+      bgImgAlt: 'عرض بصري مجسم لإدارة المرافق',
+      bgImag: "/assets/hero_ar.png"
     },
     metrics: {
       pill: 'لماذا فيب',

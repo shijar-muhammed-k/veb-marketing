@@ -20,6 +20,10 @@ export function getLanguageFromUrl() {
     return qLang;
   }
 
+  const hash = (window.location.hash || '').toLowerCase();
+  if (hash === '#ar') return 'ar';
+  if (hash === '#en') return 'en';
+
   return null;
 }
 
@@ -28,13 +32,15 @@ export function getInitialLanguage() {
   if (urlLang) return urlLang;
 
   try {
-    const saved = localStorage.getItem('veb_lang');
-    if (saved === 'ar' || saved === 'en') return saved;
+    // Check if the user explicitly chose a preference before
+    const userPref = localStorage.getItem('veb_user_lang_pref');
+    if (userPref === 'ar' || userPref === 'en') return userPref;
   } catch {
     // localStorage may be disabled or restricted
   }
 
-  return 'en';
+  // Default to Arabic
+  return 'ar';
 }
 
 export function LanguageProvider({ children }) {
@@ -61,6 +67,7 @@ export function LanguageProvider({ children }) {
     applyLanguageToDoc(newLang);
 
     try {
+      localStorage.setItem('veb_user_lang_pref', newLang);
       localStorage.setItem('veb_lang', newLang);
     } catch {
       // Ignore storage errors
@@ -108,7 +115,7 @@ export function LanguageProvider({ children }) {
     };
   }, [lang, applyLanguageToDoc, changeLanguage]);
 
-  const t = translations[lang] || translations.en;
+  const t = translations[lang] || translations.ar || translations.en;
   const isRTL = lang === 'ar';
 
   const value = {

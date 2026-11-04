@@ -15,7 +15,7 @@ export default function Hero({ onContactClick }) {
     <header className="hero" id="home">
       <img
         className="hero-bg-img"
-        src="/extracted_assets/image1_14_197.png"
+        src={t.hero.bgImag}
         alt={t.hero.bgImgAlt}
       />
       <div className="hero-wrap">
