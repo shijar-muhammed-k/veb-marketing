@@ -100,8 +100,11 @@ export default function ContactForm({ onSuccess, isModal = false }) {
     };
 
     try {
-      const leadsApiUrl = 'https://dev.vebqatar.com/api/accounts/leads/';
-      const mailApiUrl = 'https://vebqatar.com/send-mail';
+      const leadsApiUrl =
+        import.meta.env.VITE_LEADS_API_URL ||
+        (import.meta.env.DEV ? '/api/accounts/leads/' : 'https://dev.vebqatar.com/api/accounts/leads/');
+      const mailApiUrl =
+        import.meta.env.VITE_API_URL || 'https://vebqatar.com/send-mail';
 
       // Call both APIs simultaneously
       const [leadResponse, mailResponse] = await Promise.all([
