@@ -84,56 +84,29 @@ export default function ContactForm({ onSuccess, isModal = false }) {
 
     const phone = `+974 ${formData.phone.trim()}`;
 
-    const leadPayload = {
+    const payload = {
       name: formData.name.trim(),
       email: formData.email.trim(),
+      contactNumber: phone,
       phone,
       message: formData.message.trim(),
       company: ''
     };
 
-    const mailPayload = {
-      name: formData.name.trim(),
-      email: formData.email.trim(),
-      contactNumber: phone,
-      message: formData.message.trim()
-    };
-
     try {
-      const leadsApiUrl =
-        import.meta.env.VITE_LEADS_API_URL ||
-        (import.meta.env.DEV ? '/api/accounts/leads/' : 'https://dev.vebqatar.com/api/accounts/leads/');
-      const mailApiUrl =
-        import.meta.env.VITE_API_URL || 'https://vebqatar.com/send-mail';
+      const apiUrl = import.meta.env.VITE_API_URL || 'https://vebqatar.com/send-mail';
 
-      // Call both APIs simultaneously
-      const [leadResponse, mailResponse] = await Promise.all([
-        fetch(leadsApiUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(leadPayload)
-        }),
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
 
-        fetch(mailApiUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(mailPayload)
-        })
-      ]);
+      const data = await response.json().catch(() => ({}));
 
-      const [leadData, mailData] = await Promise.all([
-        leadResponse.json().catch(() => ({})),
-        mailResponse.json().catch(() => ({}))
-      ]);
-
-      const leadSuccess = leadResponse.ok;
-      const mailSuccess = mailResponse.ok && mailData.success !== false;
-
-      if (leadSuccess && mailSuccess) {
+      if (response.ok && data.success !== false) {
         setStatus({
           loading: false,
           success: true,
@@ -154,27 +127,11 @@ export default function ContactForm({ onSuccess, isModal = false }) {
             onSuccess();
           }, 1500);
         }
-      } else if (leadSuccess && !mailSuccess) {
-        setStatus({
-          loading: false,
-          success: false,
-          message: formT.errorSavedNoMail
-        });
-      } else if (!leadSuccess && mailSuccess) {
-        setStatus({
-          loading: false,
-          success: false,
-          message: formT.errorMailNoSave
-        });
       } else {
         setStatus({
           loading: false,
           success: false,
-          message:
-            leadData.detail ||
-            leadData.message ||
-            mailData.message ||
-            formT.errorGeneric
+          message: data.message || formT.errorGeneric
         });
       }
     } catch (err) {
