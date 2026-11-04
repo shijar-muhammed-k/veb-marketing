@@ -1,19 +1,15 @@
 import React from 'react';
 import FeatureCard from './FeatureCard';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Features() {
-  const features = [
+  const { t } = useLanguage();
+
+  const iconConfigs = [
     {
-      title: 'Supplier Management',
-      description:
-        'Manage all your suppliers from one centralized platform, making onboarding, communication, and performance tracking simple and efficient.',
-      iconSrc: '/extracted_assets/image5_14_197.png',
-      iconAlt: 'Supplier Management Icon'
+      iconSrc: '/extracted_assets/image5_14_197.png'
     },
     {
-      title: 'Vetted Vendors',
-      description:
-        'Connect with trusted and verified vendors to ensure reliable sourcing and build stronger supplier relationships.',
       iconSvg: (
         <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
           <path d="M4 6C4 4.895 4.895 4 6 4H18C19.105 4 20 4.895 20 6V8H4V6Z" />
@@ -26,30 +22,15 @@ export default function Features() {
       )
     },
     {
-      title: 'Live Dashboards',
-      description:
-        'Monitor procurement activities in real time with interactive dashboards that provide complete visibility into every process.',
-      iconSrc: '/extracted_assets/image7_14_197.png',
-      iconAlt: 'Live Dashboards Icon'
+      iconSrc: '/extracted_assets/image7_14_197.png'
     },
     {
-      title: 'Spend Analytics',
-      description:
-        'Analyze and categorize procurement spending with clear insights to improve budgeting and identify cost-saving opportunities.',
-      iconSrc: '/extracted_assets/image8_14_197.png',
-      iconAlt: 'Spend Analytics Icon'
+      iconSrc: '/extracted_assets/image8_14_197.png'
     },
     {
-      title: 'AI-Assisted Sourcing',
-      description:
-        'Use AI-powered recommendations to discover the right suppliers faster and make smarter purchasing decisions.',
-      iconSrc: '/extracted_assets/image9_14_197.png',
-      iconAlt: 'AI-Assisted Sourcing Icon'
+      iconSrc: '/extracted_assets/image9_14_197.png'
     },
     {
-      title: 'AP Automation',
-      description:
-        'Automate purchase orders and three-way invoice matching to reduce manual work, improve accuracy, and speed up payments.',
       iconSvg: (
         <svg viewBox="0 0 58 58" fill="none" width="48" height="48">
           <path
@@ -88,22 +69,22 @@ export default function Features() {
   ];
 
   return (
-    <section class="sec" id="features">
-      <div class="wrap">
-        <span class="pill">Our Features</span>
-        <h2 class="sec-title">
-          Everything You Need to
+    <section className="sec" id="features">
+      <div className="wrap">
+        <span className="pill">{t.features.pill}</span>
+        <h2 className="sec-title">
+          {t.features.title1}
           <br />
-          Streamline Procurement
+          {t.features.title2}
         </h2>
-        <div class="features-grid">
-          {features.map((feature, index) => (
+        <div className="features-grid">
+          {t.features.items.map((feature, index) => (
             <FeatureCard
               key={index}
               title={feature.title}
               description={feature.description}
-              iconSrc={feature.iconSrc}
-              iconSvg={feature.iconSvg}
+              iconSrc={iconConfigs[index]?.iconSrc}
+              iconSvg={iconConfigs[index]?.iconSvg}
               iconAlt={feature.iconAlt}
             />
           ))}

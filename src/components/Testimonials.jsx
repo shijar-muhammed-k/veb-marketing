@@ -27,11 +27,11 @@ export default function Testimonials() {
   ];
 
   return (false &&
-    <section class="sec">
-      <div class="wrap">
-        <span class="pill">Testimonials</span>
-        <h2 class="sec-title">Trusted by Teams</h2>
-        <div class="testimonials-grid">
+    <section className="sec">
+      <div className="wrap">
+        <span className="pill">Testimonials</span>
+        <h2 className="sec-title">Trusted by Teams</h2>
+        <div className="testimonials-grid">
           {testimonials.map((testi, index) => (
             <TestimonialCard
               key={index}

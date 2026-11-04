@@ -1287,3 +1287,413 @@ footer {
         padding: 8px 16px;
     }
 }
+
+
+/* =========================================================
+   Language Toggle Component
+   ========================================================= */
+
+.lang-toggle-container {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.lang-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 40px;
+    padding: 0 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: #ffffff;
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.lang-toggle-btn:hover,
+.lang-toggle-btn.hovered {
+    background: var(--teal-bg);
+    border-color: var(--teal-border);
+    color: #0e2c3e;
+    box-shadow: 0 3px 10px rgba(34, 197, 158, 0.18);
+}
+
+.lang-globe-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: #1ea189;
+    transition: transform 0.3s ease;
+}
+
+.lang-toggle-btn:hover .lang-globe-icon {
+    transform: rotate(20deg);
+}
+
+.lang-code-badge {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #374151;
+}
+
+/* Hover hint that smoothly reveals on hover */
+.lang-hover-hint {
+    max-width: 0;
+    opacity: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 12px;
+    font-weight: 600;
+    color: #0f766e;
+    transition: all 0.25s ease;
+}
+
+.lang-toggle-btn:hover .lang-hover-hint,
+.lang-toggle-btn.hovered .lang-hover-hint {
+    max-width: 80px;
+    opacity: 1;
+    margin-left: 4px;
+}
+
+[dir="rtl"] .lang-toggle-btn:hover .lang-hover-hint,
+[dir="rtl"] .lang-toggle-btn.hovered .lang-hover-hint {
+    margin-left: 0;
+    margin-right: 4px;
+}
+
+/* Dropdown Menu */
+.lang-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 175px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.04);
+    padding: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px) scale(0.97);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.lang-dropdown.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+[dir="rtl"] .lang-dropdown {
+    right: auto;
+    left: 0;
+}
+
+.lang-dropdown-header {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #9ca3af;
+    padding: 6px 10px 4px;
+}
+
+.lang-option {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.15s ease;
+}
+
+[dir="rtl"] .lang-option {
+    text-align: right;
+}
+
+.lang-option:hover {
+    background: #f1f5f9;
+}
+
+.lang-option.active {
+    background: var(--teal-bg);
+}
+
+.lang-option-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.lang-option-name {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.lang-option.active .lang-option-name {
+    color: #0d9488;
+}
+
+.lang-option-sub {
+    font-size: 11px;
+    color: #6b7280;
+}
+
+.lang-check-icon {
+    color: #0d9488;
+    flex-shrink: 0;
+}
+
+/* =========================================================
+   RTL (Right-to-Left) Styles for Arabic Language Support
+   ========================================================= */
+
+[dir="rtl"],
+html[dir="rtl"] body {
+    direction: rtl;
+    text-align: right;
+    font-family: 'Cairo', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Typography for Arabic */
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] h4,
+[dir="rtl"] h5,
+[dir="rtl"] h6,
+[dir="rtl"] b,
+[dir="rtl"] strong,
+[dir="rtl"] .btn {
+    font-family: 'Cairo', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+[dir="rtl"] p,
+[dir="rtl"] span,
+[dir="rtl"] a,
+[dir="rtl"] input,
+[dir="rtl"] textarea {
+    font-family: 'Cairo', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Navbar in RTL */
+[dir="rtl"] .nav-inner {
+    direction: rtl;
+}
+
+[dir="rtl"] .nav-links {
+    direction: rtl;
+}
+
+[dir="rtl"] .nav-actions {
+    direction: rtl;
+}
+
+/* Hero Section in RTL */
+[dir="rtl"] .hero-content {
+    text-align: right;
+}
+
+[dir="rtl"] .hero h1,
+[dir="rtl"] .hero p {
+    text-align: right;
+}
+
+[dir="rtl"] .hero .btns {
+    justify-content: flex-start;
+}
+
+[dir="rtl"] .hero-bg-img {
+    right: auto;
+    left: 0;
+    transform: scaleX(-1);
+    -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 1), transparent);
+    mask-image: linear-gradient(to left, rgba(0, 0, 0, 1), transparent);
+}
+
+/* Stats Bar in RTL */
+[dir="rtl"] .stats-col {
+    border-right: none;
+    border-left: 1px solid var(--line);
+}
+
+[dir="rtl"] .stats-col:last-child {
+    border-left: none;
+}
+
+/* About Section in RTL */
+[dir="rtl"] .about-grid {
+    direction: rtl;
+}
+
+[dir="rtl"] .about-text {
+    text-align: right;
+}
+
+/* Section titles remain centered */
+[dir="rtl"] .sec-title,
+[dir="rtl"] .pill {
+    text-align: center;
+}
+
+/* Features Grid in RTL */
+[dir="rtl"] .features-grid {
+    direction: rtl;
+}
+
+/* Solutions Categories in RTL */
+[dir="rtl"] .category-grid {
+    direction: rtl;
+}
+
+[dir="rtl"] .category-card-body {
+    text-align: right;
+}
+
+/* CTA Banners in RTL */
+[dir="rtl"] .cta-banner {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+[dir="rtl"] .cta-banner-content {
+    text-align: right;
+}
+
+[dir="rtl"] .cta-banner .btns {
+    justify-content: flex-start;
+}
+
+/* FAQ in RTL */
+[dir="rtl"] .faq-wrap {
+    text-align: right;
+}
+
+[dir="rtl"] .faq-question {
+    direction: rtl;
+    text-align: right;
+}
+
+[dir="rtl"] .faq-answer {
+    text-align: right;
+}
+
+/* Contact Section & Form in RTL */
+[dir="rtl"] .contact-grid {
+    direction: rtl;
+    text-align: right;
+}
+
+[dir="rtl"] .contact-form-wrap {
+    text-align: right;
+}
+
+[dir="rtl"] .form-group label {
+    text-align: right;
+    display: block;
+}
+
+[dir="rtl"] .form-group input,
+[dir="rtl"] .form-group textarea {
+    text-align: right;
+    direction: rtl;
+}
+
+[dir="rtl"] .form-status {
+    direction: rtl;
+    text-align: right;
+}
+
+[dir="rtl"] .form-error {
+    text-align: right;
+}
+
+/* Keep Phone Number input in LTR format for digits */
+[dir="rtl"] .phone-input-group {
+    direction: ltr;
+}
+
+/* Modal Close Button in RTL */
+[dir="rtl"] .contact-modal-close {
+    right: auto;
+    left: 20px;
+}
+
+/* Footer in RTL */
+[dir="rtl"] footer {
+    text-align: right;
+    direction: rtl;
+}
+
+[dir="rtl"] .footer-grid {
+    text-align: right;
+    direction: rtl;
+}
+
+[dir="rtl"] .footer-contact-item {
+    direction: rtl;
+}
+
+[dir="rtl"] .footer-links-list a:hover {
+    transform: translateX(-3px);
+}
+
+[dir="rtl"] .footer-bottom {
+    direction: rtl;
+}
+
+/* Responsive RTL adjustments */
+@media (max-width: 960px) {
+    [dir="rtl"] .hero-bg-img {
+        -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+    }
+
+    [dir="rtl"] .cta-banner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    [dir="rtl"] .cta-banner-content {
+        text-align: center;
+    }
+
+    [dir="rtl"] .cta-banner .btns {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 640px) {
+    [dir="rtl"] .stats-col {
+        border-left: none;
+        border-bottom: 1px solid var(--line);
+    }
+
+    [dir="rtl"] .stats-col:last-child {
+        border-bottom: none;
+    }
+
+    .lang-toggle-btn {
+        padding: 0 10px;
+        height: 36px;
+    }
+
+    .lang-hover-hint {
+        display: none;
+    }
+}

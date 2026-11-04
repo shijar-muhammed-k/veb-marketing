@@ -1,26 +1,28 @@
 import React, { useState, useEffect } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 import '../styles/legal.css';
 
 const SECTIONS = [
-  { id: 'section-1', title: '1. Introduction' },
-  { id: 'section-2', title: '2. Data Controller' },
-  { id: 'section-3', title: '3. Scope' },
-  { id: 'section-4', title: '4. Personal Data We Collect' },
-  { id: 'section-5', title: '5. How We Use Personal Data' },
-  { id: 'section-6', title: '6. Legal Basis for Processing' },
-  { id: 'section-7', title: '7. How We Share Personal Data' },
-  { id: 'section-8', title: '8. Cross-Border Transfers' },
-  { id: 'section-9', title: '9. Data Retention' },
-  { id: 'section-10', title: '10. Data Security' },
-  { id: 'section-11', title: '11. Your Rights' },
-  { id: 'section-12', title: '12. Cookies & Tracking' },
-  { id: 'section-13', title: '13. Children’s Data' },
-  { id: 'section-14', title: '14. Data Breach Notification' },
-  { id: 'section-15', title: '15. Changes to This Policy' },
-  { id: 'section-16', title: '16. Contact Us' }
+  { id: 'section-1', title: '1. Introduction', titleAr: '١. المقدمة التمهيدية' },
+  { id: 'section-2', title: '2. Data Controller', titleAr: '٢. الجهة المتحكمة بالبيانات' },
+  { id: 'section-3', title: '3. Scope', titleAr: '٣. نطاق سريان السياسة' },
+  { id: 'section-4', title: '4. Personal Data We Collect', titleAr: '٤. فئات البيانات الشخصية التي نجمعها' },
+  { id: 'section-5', title: '5. How We Use Personal Data', titleAr: '٥. كيف نستخدم ونعالج البيانات' },
+  { id: 'section-6', title: '6. Legal Basis for Processing', titleAr: '٦. الأساس القانوني للمعالجة' },
+  { id: 'section-7', title: '7. How We Share Personal Data', titleAr: '٧. مشاركة البيانات مع أطراف ثالثة' },
+  { id: 'section-8', title: '8. Cross-Border Transfers', titleAr: '٨. نقل البيانات خارج دولة قطر' },
+  { id: 'section-9', title: '9. Data Retention', titleAr: '٩. فترات الاحتفاظ بالبيانات' },
+  { id: 'section-10', title: '10. Data Security', titleAr: '١٠. تدابير أمن وحماية البيانات' },
+  { id: 'section-11', title: '11. Your Rights', titleAr: '١١. حقوقك القانونية كصاحب بيانات' },
+  { id: 'section-12', title: '12. Cookies & Tracking', titleAr: '١٢. ملفات تعريف الارتباط والتقنيات المشابهة' },
+  { id: 'section-13', title: '13. Children’s Data', titleAr: '١٣. بيانات القُصّر والأطفال' },
+  { id: 'section-14', title: '14. Data Breach Notification', titleAr: '١٤. الإشعار بانتهاك أمن البيانات' },
+  { id: 'section-15', title: '15. Changes to This Policy', titleAr: '١٥. التحديثات والتعديلات على السياسة' },
+  { id: 'section-16', title: '16. Contact Us', titleAr: '١٦. تفاصيل التواصل والاستفسارات' }
 ];
 
 export default function PrivacyPolicy({ onNavigate }) {
+  const { lang, t, isRTL } = useLanguage();
   const [activeSection, setActiveSection] = useState('section-1');
 
   useEffect(() => {
@@ -57,7 +59,7 @@ export default function PrivacyPolicy({ onNavigate }) {
         <div className="wrap">
           <div className="legal-breadcrumbs">
             <a
-              href="/"
+              href={`/${lang}`}
               onClick={(e) => {
                 e.preventDefault();
                 if (onNavigate) onNavigate('/');
@@ -67,35 +69,36 @@ export default function PrivacyPolicy({ onNavigate }) {
                 <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
                 <polyline points="9 22 9 12 15 12 15 22"/>
               </svg>
-              Home
+              {t.legalCommon.home}
             </a>
             <span className="legal-breadcrumbs-separator">/</span>
-            <span>Privacy Policy</span>
+            <span>{t.legalCommon.privacyTitle}</span>
           </div>
 
-          <div className="pill">Data Protection</div>
-          <h1 className="legal-hero-title">Privacy Policy</h1>
+          <div className="pill">{isRTL ? 'حماية البيانات' : 'Data Protection'}</div>
+          <h1 className="legal-hero-title">{t.legalCommon.privacyTitle}</h1>
           <p className="legal-hero-subtitle">
-            How VEB Collects, Uses, and Protects Personal Data &mdash; VEB For Digital Trade Services W.L.L.
-            Operating the business-to-business facilities management &amp; MRO e-procurement marketplace.
+            {isRTL
+              ? 'كيف تقوم منصة فيب بجمع واستخدام وحماية البيانات الشخصية — شركة فيب لخدمات التجارة الرقمية ذ.م.م المشغلة لسوق إدارة المرافق والمشتريات الإلكترونية B2B.'
+              : 'How VEB Collects, Uses, and Protects Personal Data — VEB For Digital Trade Services W.L.L. Operating the business-to-business facilities management & MRO e-procurement marketplace.'}
           </p>
 
           <div className="legal-meta-bar">
             <div className="legal-meta-item">
-              <span>Regulation:</span>
-              <strong>Qatar Law No. 13 of 2016 (PDPPL)</strong>
+              <span>{isRTL ? 'التشريع المنظم:' : 'Regulation:'}</span>
+              <strong>{isRTL ? 'قانون قطر رقم (13) لسنة 2016' : 'Qatar Law No. 13 of 2016 (PDPPL)'}</strong>
             </div>
             <div className="legal-meta-item">
-              <span>Entity:</span>
-              <strong>VEB For Digital Trade Services W.L.L. (CR: 247533)</strong>
+              <span>{isRTL ? 'الجهة:' : 'Entity:'}</span>
+              <strong>{isRTL ? 'شركة فيب لخدمات التجارة الرقمية ذ.م.م (س.ت: 247533)' : 'VEB For Digital Trade Services W.L.L. (CR: 247533)'}</strong>
             </div>
             <div className="legal-meta-item">
-              <span>Version:</span>
-              <span className="legal-meta-badge">Draft 1.0</span>
+              <span>{isRTL ? 'الإصدار:' : 'Version:'}</span>
+              <span className="legal-meta-badge">{isRTL ? 'مسودة 1.0' : 'Draft 1.0'}</span>
             </div>
             <div className="legal-meta-item">
-              <span>Effective Date:</span>
-              <strong>October 2026</strong>
+              <span>{isRTL ? 'تاريخ السريان:' : 'Effective Date:'}</span>
+              <strong>{isRTL ? 'أكتوبر 2026' : 'October 2026'}</strong>
             </div>
           </div>
         </div>
@@ -108,8 +111,8 @@ export default function PrivacyPolicy({ onNavigate }) {
             {/* Sticky Navigation Sidebar */}
             <aside className="legal-sidebar">
               <div className="legal-sidebar-header">
-                <span>Table of Contents</span>
-                <span className="legal-meta-badge">16 Sections</span>
+                <span>{t.legalCommon.tableOfContents}</span>
+                <span className="legal-meta-badge">{SECTIONS.length} {isRTL ? 'بنداً' : 'Sections'}</span>
               </div>
               <ul className="legal-toc-list">
                 {SECTIONS.map((sec) => (
@@ -121,16 +124,16 @@ export default function PrivacyPolicy({ onNavigate }) {
                       href={`#${sec.id}`}
                       onClick={(e) => handleTocClick(e, sec.id)}
                     >
-                      {sec.title}
+                      {isRTL ? sec.titleAr : sec.title}
                     </a>
                   </li>
                 ))}
               </ul>
 
               <div className="legal-sidebar-switch">
-                <div className="legal-sidebar-switch-title">Related Policies</div>
+                <div className="legal-sidebar-switch-title">{t.legalCommon.switchToTerms}</div>
                 <a
-                  href="/terms-and-conditions"
+                  href={`/${lang}/terms-and-conditions`}
                   className="legal-sidebar-switch-link"
                   onClick={(e) => {
                     e.preventDefault();
@@ -143,7 +146,7 @@ export default function PrivacyPolicy({ onNavigate }) {
                     <line x1="16" y1="13" x2="8" y2="13"/>
                     <line x1="16" y1="17" x2="8" y2="17"/>
                   </svg>
-                  Terms and Conditions &rarr;
+                  {t.legalCommon.switchToTermsLink} &rarr;
                 </a>
               </div>
             </aside>

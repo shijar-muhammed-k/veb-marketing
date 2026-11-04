@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { LanguageProvider, useLanguage, getLanguageFromUrl } from './context/LanguageContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Metrics from './components/Metrics';
@@ -14,8 +15,10 @@ import Footer from './components/Footer';
 import TermsAndConditions from './pages/TermsAndConditions';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 
-function resolveRoute(pathname, hash) {
-  const p = (pathname || '').toLowerCase().replace(/\/+$/, '') || '/';
+export function resolveRoute(pathname, hash) {
+  let p = (pathname || '').toLowerCase().replace(/\/+$/, '') || '/';
+  // Strip language prefix /en or /ar
+  p = p.replace(/^\/(en|ar)(\/|$)/, '/').replace(/\/+$/, '') || '/';
   const h = (hash || '').toLowerCase().replace(/^#\/?/, '');
 
   if (p === '/terms' || p === '/terms-and-conditions' || h === 'terms' || h === 'terms-and-conditions') {
@@ -27,7 +30,9 @@ function resolveRoute(pathname, hash) {
   return '/';
 }
 
-export default function App() {
+function MainApp() {
+  const { lang, t, setLanguage } = useLanguage();
+
   const [currentRoute, setCurrentRoute] = useState(() =>
     resolveRoute(window.location.pathname, window.location.hash)
   );
@@ -39,10 +44,12 @@ export default function App() {
 
   const handleNavigate = (path, hashTarget) => {
     const targetRoute = resolveRoute(path, hashTarget);
-    const targetUrl = targetRoute + (hashTarget && targetRoute === '/' ? `#${hashTarget}` : '');
+    const targetPath = `/${lang}${targetRoute === '/' ? '' : targetRoute}`;
+    const targetUrl = targetPath + (hashTarget && targetRoute === '/' ? `#${hashTarget}` : '');
 
-    if (window.location.pathname !== targetRoute || (targetRoute === '/' && hashTarget)) {
-      window.history.pushState({}, '', targetUrl);
+    const currentCleanPath = window.location.pathname.replace(/\/+$/, '') || '/';
+    if (currentCleanPath !== targetPath || (targetRoute === '/' && hashTarget)) {
+      window.history.pushState({ lang, route: targetRoute }, '', targetUrl);
     }
 
     setCurrentRoute(targetRoute);
@@ -66,6 +73,11 @@ export default function App() {
       const nextRoute = resolveRoute(window.location.pathname, window.location.hash);
       setCurrentRoute(nextRoute);
 
+      const urlLang = getLanguageFromUrl();
+      if (urlLang && urlLang !== lang) {
+        setLanguage(urlLang, false);
+      }
+
       const hash = window.location.hash.replace(/^#/, '');
       if (hash && nextRoute === '/') {
         setTimeout(() => {
@@ -81,17 +93,22 @@ export default function App() {
       window.removeEventListener('popstate', handlePopState);
       window.removeEventListener('hashchange', handlePopState);
     };
-  }, []);
+  }, [lang, setLanguage]);
 
   useEffect(() => {
     if (currentRoute === '/terms-and-conditions') {
-      document.title = 'Terms & Conditions | VEB - Enterprise Procurement & Facility Management';
+      document.title = t.meta.termsTitle;
     } else if (currentRoute === '/privacy-policy') {
-      document.title = 'Privacy Policy | VEB - Enterprise Procurement & Facility Management';
+      document.title = t.meta.privacyTitle;
     } else {
-      document.title = 'VEB – Enterprise Procurement & Facility Management Platform';
+      document.title = t.meta.title;
     }
-  }, [currentRoute]);
+
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute('content', t.meta.description);
+    }
+  }, [currentRoute, t]);
 
   return (
     <>
@@ -119,9 +136,9 @@ export default function App() {
 
           {/* CTA Banner 1 */}
           <CtaBanner
-            title="Ready to experience the future of E-Procurement?"
-            description="Join early. Skip the line. Free onboarding + 6 months premium – on us."
-            primaryBtnText="Get Early Access"
+            title={t.ctaBanners.banner1.title}
+            description={t.ctaBanners.banner1.description}
+            primaryBtnText={t.ctaBanners.banner1.primaryBtn}
             onPrimaryClick={openContactModal}
             imageSrc="/extracted_assets/image4_14_197.png"
             imageAlt="E-Procurement Platform Concept Graphic"
@@ -132,9 +149,9 @@ export default function App() {
 
           {/* CTA Banner 2 */}
           <CtaBanner
-            title="Do you provide any of the above services or products?"
-            description="Your next opportunity is here. Become a trusted supplier with us."
-            primaryBtnText="Join now for free."
+            title={t.ctaBanners.banner2.title}
+            description={t.ctaBanners.banner2.description}
+            primaryBtnText={t.ctaBanners.banner2.primaryBtn}
             onPrimaryClick={openContactModal}
             imageSrc="/extracted_assets/image15_14_197.jpeg"
             imageAlt="Warehouse Logistics Management Graphic"
@@ -147,9 +164,9 @@ export default function App() {
 
           {/* CTA Banner 3 */}
           <CtaBanner
-            title="Ready to experience the future of E-Procurement?"
-            description="Join early. Skip the line. Free onboarding + 6 months premium – on us."
-            primaryBtnText="Get Early Access"
+            title={t.ctaBanners.banner3.title}
+            description={t.ctaBanners.banner3.description}
+            primaryBtnText={t.ctaBanners.banner3.primaryBtn}
             onPrimaryClick={openContactModal}
             imageSrc="/extracted_assets/image4_14_197.png"
             imageAlt="E-Procurement Platform Concept Graphic"
@@ -167,5 +184,13 @@ export default function App() {
         onClose={closeContactModal}
       />
     </>
+  );
+}
+
+export default function App() {
+  return (
+    <LanguageProvider>
+      <MainApp />
+    </LanguageProvider>
   );
 }

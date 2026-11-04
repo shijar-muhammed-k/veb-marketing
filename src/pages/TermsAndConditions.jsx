@@ -1,33 +1,35 @@
 import React, { useState, useEffect } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 import '../styles/legal.css';
 
 const SECTIONS = [
-  { id: 'section-1', title: '1. Introduction and Acceptance' },
-  { id: 'section-2', title: '2. Definitions' },
-  { id: 'section-3', title: '3. Eligibility and Registration' },
-  { id: 'section-4', title: '4. Role of the Platform' },
-  { id: 'section-5', title: '5. Buyer and Supplier Obligations' },
-  { id: 'section-6', title: '6. Prohibited Conduct' },
-  { id: 'section-7', title: '7. RFQ, Quotation, and Order Process' },
-  { id: 'section-8', title: '8. Scoring Systems' },
-  { id: 'section-9', title: '9. Fees and Payment' },
-  { id: 'section-10', title: '10. Escrow Service' },
-  { id: 'section-11', title: '11. Dispute Resolution Between Users' },
-  { id: 'section-12', title: '12. Intellectual Property' },
-  { id: 'section-13', title: '13. Confidentiality' },
-  { id: 'section-14', title: '14. Disclaimers' },
-  { id: 'section-15', title: '15. Limitation of Liability' },
-  { id: 'section-16', title: '16. Indemnification' },
-  { id: 'section-17', title: '17. Suspension and Termination' },
-  { id: 'section-18', title: '18. Governing Law & Arbitration' },
-  { id: 'section-19', title: '19. Data Protection' },
-  { id: 'section-20', title: '20. Force Majeure' },
-  { id: 'section-21', title: '21. Amendments' },
-  { id: 'section-22', title: '22. General Provisions' },
-  { id: 'section-23', title: '23. Contact Details' }
+  { id: 'section-1', title: '1. Introduction and Acceptance', titleAr: '١. المقدمة والموافقة' },
+  { id: 'section-2', title: '2. Definitions', titleAr: '٢. التعريفات والمصطلحات' },
+  { id: 'section-3', title: '3. Eligibility and Registration', titleAr: '٣. الأهلية والتسجيل' },
+  { id: 'section-4', title: '4. Role of the Platform', titleAr: '٤. دور المنصة وطبيعتها' },
+  { id: 'section-5', title: '5. Buyer and Supplier Obligations', titleAr: '٥. التزامات المشترين والموردين' },
+  { id: 'section-6', title: '6. Prohibited Conduct', titleAr: '٦. السلوكيات المحظورة' },
+  { id: 'section-7', title: '7. RFQ, Quotation, and Order Process', titleAr: '٧. طلبات الأسعار والترسية' },
+  { id: 'section-8', title: '8. Scoring Systems', titleAr: '٨. نظام التقييم والدرجات' },
+  { id: 'section-9', title: '9. Fees and Payment', titleAr: '٩. الرسوم وطرق الدفع' },
+  { id: 'section-10', title: '10. Escrow Service', titleAr: '١٠. خدمة حساب الضمان المالي' },
+  { id: 'section-11', title: '11. Dispute Resolution Between Users', titleAr: '١١. تسوية النزاعات بين المستخدمين' },
+  { id: 'section-12', title: '12. Intellectual Property', titleAr: '١٢. حقوق الملكية الفكرية' },
+  { id: 'section-13', title: '13. Confidentiality', titleAr: '١٣. السرية وحماية المعلومات' },
+  { id: 'section-14', title: '14. Disclaimers', titleAr: '١٤. إخلاء المسؤولية والضمانات' },
+  { id: 'section-15', title: '15. Limitation of Liability', titleAr: '١٥. حدود المسؤولية القانونية' },
+  { id: 'section-16', title: '16. Indemnification', titleAr: '١٦. التعويض وإبراء الذمة' },
+  { id: 'section-17', title: '17. Suspension and Termination', titleAr: '١٧. التعليق وإنهاء الحساب' },
+  { id: 'section-18', title: '18. Governing Law & Arbitration', titleAr: '١٨. القانون الحاكم والتحكيم' },
+  { id: 'section-19', title: '19. Data Protection', titleAr: '١٩. حماية وخصوصية البيانات' },
+  { id: 'section-20', title: '20. Force Majeure', titleAr: '٢٠. القوة القاهرة والظروف الطارئة' },
+  { id: 'section-21', title: '21. Amendments', titleAr: '٢١. تعديل الشروط والأحكام' },
+  { id: 'section-22', title: '22. General Provisions', titleAr: '٢٢. أحكام عامة وختامية' },
+  { id: 'section-23', title: '23. Contact Details', titleAr: '٢٣. تفاصيل الاتصال والتواصل' }
 ];
 
 export default function TermsAndConditions({ onNavigate }) {
+  const { lang, t, isRTL } = useLanguage();
   const [activeSection, setActiveSection] = useState('section-1');
 
   useEffect(() => {
@@ -64,7 +66,7 @@ export default function TermsAndConditions({ onNavigate }) {
         <div className="wrap">
           <div className="legal-breadcrumbs">
             <a
-              href="/"
+              href={`/${lang}`}
               onClick={(e) => {
                 e.preventDefault();
                 if (onNavigate) onNavigate('/');
@@ -74,35 +76,36 @@ export default function TermsAndConditions({ onNavigate }) {
                 <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
                 <polyline points="9 22 9 12 15 12 15 22"/>
               </svg>
-              Home
+              {t.legalCommon.home}
             </a>
             <span className="legal-breadcrumbs-separator">/</span>
-            <span>Terms and Conditions</span>
+            <span>{t.legalCommon.termsTitle}</span>
           </div>
 
-          <div className="pill">Legal Terms</div>
-          <h1 className="legal-hero-title">Terms and Conditions</h1>
+          <div className="pill">{isRTL ? 'الشروط القانونية' : 'Legal Terms'}</div>
+          <h1 className="legal-hero-title">{t.legalCommon.termsTitle}</h1>
           <p className="legal-hero-subtitle">
-            Terms of Use for Buyers and Suppliers — VEB For Digital Trade Services W.L.L.
-            Operating the business-to-business facilities management &amp; MRO e-procurement marketplace.
+            {isRTL
+              ? 'شروط الاستخدام للمشترين والموردين — شركة فيب لخدمات التجارة الرقمية ذ.م.م. المشغلة لسوق إدارة المرافق والمشتريات الإلكترونية B2B.'
+              : 'Terms of Use for Buyers and Suppliers — VEB For Digital Trade Services W.L.L. Operating the business-to-business facilities management & MRO e-procurement marketplace.'}
           </p>
 
           <div className="legal-meta-bar">
             <div className="legal-meta-item">
-              <span>Jurisdiction:</span>
-              <strong>State of Qatar</strong>
+              <span>{isRTL ? 'الاختصاص القضائي:' : 'Jurisdiction:'}</span>
+              <strong>{isRTL ? 'دولة قطر' : 'State of Qatar'}</strong>
             </div>
             <div className="legal-meta-item">
-              <span>Entity:</span>
-              <strong>VEB For Digital Trade Services W.L.L. (CR: 247533)</strong>
+              <span>{isRTL ? 'الجهة:' : 'Entity:'}</span>
+              <strong>{isRTL ? 'شركة فيب لخدمات التجارة الرقمية ذ.م.م (س.ت: 247533)' : 'VEB For Digital Trade Services W.L.L. (CR: 247533)'}</strong>
             </div>
             <div className="legal-meta-item">
-              <span>Version:</span>
-              <span className="legal-meta-badge">Draft 1.0</span>
+              <span>{isRTL ? 'الإصدار:' : 'Version:'}</span>
+              <span className="legal-meta-badge">{isRTL ? 'مسودة 1.0' : 'Draft 1.0'}</span>
             </div>
             <div className="legal-meta-item">
-              <span>Effective Date:</span>
-              <strong>October 2026</strong>
+              <span>{isRTL ? 'تاريخ السريان:' : 'Effective Date:'}</span>
+              <strong>{isRTL ? 'أكتوبر 2026' : 'October 2026'}</strong>
             </div>
           </div>
         </div>
@@ -115,8 +118,8 @@ export default function TermsAndConditions({ onNavigate }) {
             {/* Sticky Navigation Sidebar */}
             <aside className="legal-sidebar">
               <div className="legal-sidebar-header">
-                <span>Table of Contents</span>
-                <span className="legal-meta-badge">23 Sections</span>
+                <span>{t.legalCommon.tableOfContents}</span>
+                <span className="legal-meta-badge">{SECTIONS.length} {isRTL ? 'بنداً' : 'Sections'}</span>
               </div>
               <ul className="legal-toc-list">
                 {SECTIONS.map((sec) => (
@@ -128,16 +131,16 @@ export default function TermsAndConditions({ onNavigate }) {
                       href={`#${sec.id}`}
                       onClick={(e) => handleTocClick(e, sec.id)}
                     >
-                      {sec.title}
+                      {isRTL ? sec.titleAr : sec.title}
                     </a>
                   </li>
                 ))}
               </ul>
 
               <div className="legal-sidebar-switch">
-                <div className="legal-sidebar-switch-title">Related Policies</div>
+                <div className="legal-sidebar-switch-title">{t.legalCommon.switchToPrivacy}</div>
                 <a
-                  href="/privacy-policy"
+                  href={`/${lang}/privacy-policy`}
                   className="legal-sidebar-switch-link"
                   onClick={(e) => {
                     e.preventDefault();
@@ -147,7 +150,7 @@ export default function TermsAndConditions({ onNavigate }) {
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                   </svg>
-                  Privacy Policy &rarr;
+                  {t.legalCommon.switchToPrivacyLink} &rarr;
                 </a>
               </div>
             </aside>

@@ -1,4 +1,6 @@
 import React from 'react';
+import { useLanguage } from '../context/LanguageContext';
+import LanguageToggle from './LanguageToggle';
 
 export default function Navbar({
   onContactClick,
@@ -6,6 +8,8 @@ export default function Navbar({
   currentRoute = '/',
   loginUrl = import.meta.env.VITE_LOGIN_URL || 'https://app.vebqatar.com/login'
 }) {
+  const { t, lang } = useLanguage();
+
   const handleContactClick = (e) => {
     if (onContactClick) {
       e.preventDefault();
@@ -19,7 +23,8 @@ export default function Navbar({
       if (onNavigate) {
         onNavigate('/', sectionId);
       } else {
-        window.location.href = `/${sectionId ? '#' + sectionId : ''}`;
+        const base = `/${lang}`;
+        window.location.href = `${base}${sectionId ? '#' + sectionId : ''}`;
       }
     } else {
       if (sectionId) {
@@ -38,7 +43,7 @@ export default function Navbar({
       <div className="nav-inner">
         <a
           className="nav-logo"
-          href="/"
+          href={`/${lang}`}
           onClick={(e) => handleNavLink(e, '/', '')}
           aria-label="VEB Home"
         >
@@ -47,46 +52,48 @@ export default function Navbar({
 
         <ul className="nav-links">
           <li>
-            <a href="/#home" onClick={(e) => handleNavLink(e, '/', 'home')}>
-              Home
+            <a href={`/${lang}#home`} onClick={(e) => handleNavLink(e, '/', 'home')}>
+              {t.nav.home}
             </a>
           </li>
           <li>
-            <a href="/#about" onClick={(e) => handleNavLink(e, '/', 'about')}>
-              About Us
+            <a href={`/${lang}#about`} onClick={(e) => handleNavLink(e, '/', 'about')}>
+              {t.nav.about}
             </a>
           </li>
           <li>
-            <a href="/#features" onClick={(e) => handleNavLink(e, '/', 'features')}>
-              Features
+            <a href={`/${lang}#features`} onClick={(e) => handleNavLink(e, '/', 'features')}>
+              {t.nav.features}
             </a>
           </li>
           <li>
-            <a href="/#services" onClick={(e) => handleNavLink(e, '/', 'services')}>
-              Solutions
+            <a href={`/${lang}#services`} onClick={(e) => handleNavLink(e, '/', 'services')}>
+              {t.nav.solutions}
             </a>
           </li>
-
-          <div className="nav-actions">
-            <a
-              className="btn btn-outline"
-              style={{ minWidth: '150px' }}
-              href={loginUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Login
-            </a>
-            <a
-              className="btn btn-dark"
-              style={{ minWidth: '150px' }}
-              href="#contact"
-              onClick={handleContactClick}
-            >
-              Contact Us
-            </a>
-          </div>
         </ul>
+
+        <div className="nav-actions">
+          <LanguageToggle />
+
+          <a
+            className="btn btn-outline"
+            style={{ minWidth: '120px' }}
+            href={loginUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {t.nav.login}
+          </a>
+          <a
+            className="btn btn-dark"
+            style={{ minWidth: '120px' }}
+            href="#contact"
+            onClick={handleContactClick}
+          >
+            {t.nav.contactUs}
+          </a>
+        </div>
       </div>
     </nav>
   );

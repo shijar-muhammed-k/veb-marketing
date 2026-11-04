@@ -1,24 +1,24 @@
 import React from 'react';
 import ContactForm from './ContactForm';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Contact() {
+  const { t } = useLanguage();
+
   return (
-    <section class="sec" id="contact" style={{ paddingTop: '30px', paddingBottom: '40px' }}>
-      <div class="wrap">
-        <div class="contact-grid">
-          <div class="contact-img-wrap">
+    <section className="sec" id="contact" style={{ paddingTop: '30px', paddingBottom: '40px' }}>
+      <div className="wrap">
+        <div className="contact-grid">
+          <div className="contact-img-wrap">
             <img
-              class="contact-img"
+              className="contact-img"
               src="/extracted_assets/image22_14_197.jpeg"
-              alt="VEB Support Representative"
+              alt={t.contact.imgAlt}
             />
           </div>
-          <div class="contact-form-wrap">
-            <h2>Let's Start the Conversation</h2>
-            <p>
-              Let's connect. Whether you're a buyer, supplier, or partner, we're happy to answer
-              your questions and help you get started.
-            </p>
+          <div className="contact-form-wrap">
+            <h2>{t.contact.title}</h2>
+            <p>{t.contact.description}</p>
             <ContactForm />
           </div>
         </div>

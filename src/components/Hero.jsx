@@ -1,6 +1,9 @@
 import React from 'react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Hero({ onContactClick }) {
+  const { t } = useLanguage();
+
   const handleContactClick = (e) => {
     if (onContactClick) {
       e.preventDefault();
@@ -9,29 +12,26 @@ export default function Hero({ onContactClick }) {
   };
 
   return (
-    <header class="hero" id="home">
+    <header className="hero" id="home">
       <img
-        class="hero-bg-img"
+        className="hero-bg-img"
         src="/extracted_assets/image1_14_197.png"
-        alt="Facility Management Hologram Visual"
+        alt={t.hero.bgImgAlt}
       />
-      <div class="hero-wrap">
-        <div class="hero-content">
-          <h1>Facility Management Made Smarter for Modern Businesses</h1>
-          <p>
-            Manage your facilities smarter with a centralized system that simplifies sourcing,
-            purchasing, approvals, and payments – all in one place.
-          </p>
-          <div class="btns">
-            <a class="btn btn-teal" href="#services">
-              See Our HSE Portfolio
+      <div className="hero-wrap">
+        <div className="hero-content">
+          <h1>{t.hero.title}</h1>
+          <p>{t.hero.description}</p>
+          <div className="btns">
+            <a className="btn btn-teal" href="#services">
+              {t.hero.seePortfolio}
             </a>
             <a
-              class="btn btn-dark"
+              className="btn btn-dark"
               href="#contact"
               onClick={handleContactClick}
             >
-              Contact Us
+              {t.hero.contactUs}
             </a>
           </div>
         </div>

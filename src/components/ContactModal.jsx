@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
 import ContactForm from './ContactForm';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function ContactModal({ isOpen, onClose }) {
+  const { t } = useLanguage();
+
   useEffect(() => {
     if (!isOpen) return;
 
@@ -24,39 +27,36 @@ export default function ContactModal({ isOpen, onClose }) {
 
   return (
     <div
-      class="contact-modal-overlay"
+      className="contact-modal-overlay"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="contact-modal-title"
     >
       <div
-        class="contact-modal-container"
+        className="contact-modal-container"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           type="button"
-          class="contact-modal-close"
+          className="contact-modal-close"
           onClick={onClose}
           aria-label="Close modal"
         >
           &times;
         </button>
 
-        <div class="contact-grid">
-          <div class="contact-img-wrap">
+        <div className="contact-grid">
+          <div className="contact-img-wrap">
             <img
-              class="contact-img"
+              className="contact-img"
               src="/extracted_assets/image22_14_197.jpeg"
-              alt="VEB Support Representative"
+              alt={t.contact.imgAlt}
             />
           </div>
-          <div class="contact-form-wrap">
-            <h2 id="contact-modal-title">Let's Start the Conversation</h2>
-            <p>
-              Let's connect. Whether you're a buyer, supplier, or partner, we're happy to answer
-              your questions and help you get started.
-            </p>
+          <div className="contact-form-wrap">
+            <h2 id="contact-modal-title">{t.contact.title}</h2>
+            <p>{t.contact.description}</p>
             <ContactForm onSuccess={onClose} isModal={true} />
           </div>
         </div>

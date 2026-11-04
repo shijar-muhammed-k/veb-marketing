@@ -28,15 +28,15 @@ export default function CtaBanner({
   };
 
   return (
-    <div class="wrap">
-      <div class="cta-banner">
-        <div class="cta-banner-content">
+    <div className="wrap">
+      <div className="cta-banner">
+        <div className="cta-banner-content">
           <h3>{title}</h3>
           <p>{description}</p>
-          <div class="btns">
+          <div className="btns">
             {primaryBtnText && (
               <a
-                class="btn btn-teal"
+                className="btn btn-teal"
                 href={primaryBtnLink}
                 onClick={handlePrimaryClick}
               >
@@ -45,7 +45,7 @@ export default function CtaBanner({
             )}
             {secondaryBtnText && (
               <a
-                class="btn btn-dark"
+                className="btn btn-dark"
                 href={secondaryBtnLink}
                 onClick={handleSecondaryClick}
               >
@@ -56,7 +56,7 @@ export default function CtaBanner({
         </div>
         {imageSrc && (
           <img
-            class={`cta-banner-img${isWide ? ' wide' : ''}`}
+            className={`cta-banner-img${isWide ? ' wide' : ''}`}
             src={imageSrc}
             alt={imageAlt}
           />

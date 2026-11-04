@@ -513,3 +513,113 @@
     font-size: 19px;
   }
 }
+
+
+/* =========================================================
+   RTL Styles for Legal Pages
+   ========================================================= */
+
+[dir="rtl"] .legal-page {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Cairo', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+[dir="rtl"] .legal-hero-title,
+[dir="rtl"] .legal-hero-subtitle {
+  text-align: right;
+}
+
+[dir="rtl"] .legal-hero::after {
+  right: auto;
+  left: -10%;
+}
+
+[dir="rtl"] .legal-breadcrumbs {
+  direction: rtl;
+}
+
+[dir="rtl"] .legal-breadcrumbs-separator {
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .legal-meta-bar {
+  direction: rtl;
+}
+
+[dir="rtl"] .legal-layout {
+  grid-template-columns: 1fr 340px;
+}
+
+[dir="rtl"] .legal-sidebar {
+  order: 2;
+  text-align: right;
+}
+
+[dir="rtl"] .legal-main {
+  order: 1;
+  text-align: right;
+}
+
+[dir="rtl"] .legal-toc-item a {
+  border-left: none;
+  border-right: 2px solid transparent;
+}
+
+[dir="rtl"] .legal-toc-item a:hover {
+  border-left-color: transparent;
+  border-right-color: var(--teal);
+}
+
+[dir="rtl"] .legal-toc-item.active a {
+  border-left-color: transparent;
+  border-right-color: var(--teal);
+}
+
+[dir="rtl"] .legal-notice-box {
+  border-left: 1px solid #fde68a;
+  border-right: 4px solid #f59e0b;
+}
+
+[dir="rtl"] .legal-highlight-box {
+  border-left: 1px solid #c7d2fe;
+  border-right: 4px solid #4f46e5;
+}
+
+[dir="rtl"] .legal-section {
+  text-align: right;
+}
+
+[dir="rtl"] .legal-section-title {
+  text-align: right;
+}
+
+[dir="rtl"] .legal-def-item {
+  border-left: none;
+  border-right: 3px solid var(--teal-border);
+  padding-left: 0;
+  padding-right: 14px;
+}
+
+[dir="rtl"] .legal-table th,
+[dir="rtl"] .legal-table td {
+  text-align: right;
+}
+
+[dir="rtl"] .legal-switch-banner {
+  direction: rtl;
+}
+
+@media (max-width: 960px) {
+  [dir="rtl"] .legal-layout {
+    grid-template-columns: 1fr;
+  }
+
+  [dir="rtl"] .legal-sidebar {
+    order: 1;
+  }
+
+  [dir="rtl"] .legal-main {
+    order: 2;
+  }
+}
