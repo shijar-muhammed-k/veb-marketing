@@ -14,18 +14,36 @@ import ContactModal from './components/ContactModal';
 import Footer from './components/Footer';
 import TermsAndConditions from './pages/TermsAndConditions';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import SupplierTermsAndConditions from './pages/SupplierTermsAndConditions';
 
 export function resolveRoute(pathname, hash) {
   let p = (pathname || '').toLowerCase().replace(/\/+$/, '') || '/';
   // Strip language prefix /en or /ar
   p = p.replace(/^\/(en|ar)(\/|$)/, '/').replace(/\/+$/, '') || '/';
-  const h = (hash || '').toLowerCase().replace(/^#\/?/, '');
+  const decodedP = decodeURIComponent(p);
+  const normalizedP = decodedP.replace(/%20/g, '-').replace(/\s+/g, '-');
 
-  if (p === '/terms' || p === '/terms-and-conditions' || h === 'terms' || h === 'terms-and-conditions') {
+  const rawHash = (hash || '').toLowerCase().replace(/^#\/?/, '');
+  const decodedHash = decodeURIComponent(rawHash);
+  const normalizedHash = decodedHash.replace(/%20/g, '-').replace(/\s+/g, '-');
+
+  if (normalizedP === '/terms' || normalizedP === '/terms-and-conditions' || normalizedHash === 'terms' || normalizedHash === 'terms-and-conditions') {
     return '/terms-and-conditions';
   }
-  if (p === '/privacy' || p === '/privacy-policy' || h === 'privacy' || h === 'privacy-policy') {
+  if (normalizedP === '/privacy' || normalizedP === '/privacy-policy' || normalizedHash === 'privacy' || normalizedHash === 'privacy-policy') {
     return '/privacy-policy';
+  }
+  if (
+    normalizedP === '/supplier-terms' ||
+    normalizedP === '/supplier-terms-and-conditions' ||
+    normalizedP === '/supplier-terms-and-condtions' ||
+    normalizedP === '/supplierterms' ||
+    normalizedP === '/suppliertermsandconditions' ||
+    normalizedHash === 'supplier-terms' ||
+    normalizedHash === 'supplier-terms-and-conditions' ||
+    normalizedHash === 'supplier-terms-and-condtions'
+  ) {
+    return '/supplier-terms-and-conditions';
   }
   return '/';
 }
@@ -100,6 +118,8 @@ function MainApp() {
       document.title = t.meta.termsTitle;
     } else if (currentRoute === '/privacy-policy') {
       document.title = t.meta.privacyTitle;
+    } else if (currentRoute === '/supplier-terms-and-conditions') {
+      document.title = t.meta.supplierTermsTitle;
     } else {
       document.title = t.meta.title;
     }
@@ -125,6 +145,11 @@ function MainApp() {
         />
       ) : currentRoute === '/privacy-policy' ? (
         <PrivacyPolicy
+          onNavigate={handleNavigate}
+          onContactClick={openContactModal}
+        />
+      ) : currentRoute === '/supplier-terms-and-conditions' ? (
+        <SupplierTermsAndConditions
           onNavigate={handleNavigate}
           onContactClick={openContactModal}
         />

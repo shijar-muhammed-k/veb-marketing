@@ -4,7 +4,8 @@ export const translations = {
       title: 'VEB – Enterprise Procurement & Facility Management Platform',
       description: 'VEB is a next-generation procurement platform that transforms how businesses source, purchase, approve, and pay for Facility Management and MRO.',
       termsTitle: 'Terms & Conditions | VEB - Enterprise Procurement & Facility Management',
-      privacyTitle: 'Privacy Policy | VEB - Enterprise Procurement & Facility Management'
+      privacyTitle: 'Privacy Policy | VEB - Enterprise Procurement & Facility Management',
+      supplierTermsTitle: 'Supplier Terms & Conditions | VEB - Enterprise Procurement & Facility Management'
     },
     nav: {
       home: 'Home',
@@ -288,6 +289,7 @@ export const translations = {
       home: 'Home',
       termsTitle: 'Terms and Conditions',
       privacyTitle: 'Privacy Policy',
+      supplierTermsTitle: 'Supplier Terms and Conditions',
       switchToPrivacy: 'Looking for our Privacy Policy?',
       switchToPrivacyLink: 'View Privacy Policy',
       switchToTerms: 'Looking for our Terms & Conditions?',
@@ -304,7 +306,8 @@ export const translations = {
       title: 'فيب – المنصة الرائدة لإدارة المرافق والمشتريات المؤسسية',
       description: 'فيب هي منصة مشتريات متطورة تُحدث نقلة نوعية في كيفية توريد وشراء واعتماد ودفع مشتريات إدارة المرافق والصيانة والتشغيل للشركات.',
       termsTitle: 'الشروط والأحكام | فيب - إدارة المرافق والمشتريات المؤسسية',
-      privacyTitle: 'سياسة الخصوصية | فيب - إدارة المرافق والمشتريات المؤسسية'
+      privacyTitle: 'سياسة الخصوصية | فيب - إدارة المرافق والمشتريات المؤسسية',
+      supplierTermsTitle: 'شروط وأحكام الموردين | فيب - إدارة المرافق والمشتريات المؤسسية'
     },
     nav: {
       home: 'الرئيسية',
@@ -588,6 +591,7 @@ export const translations = {
       home: 'الرئيسية',
       termsTitle: 'الشروط والأحكام',
       privacyTitle: 'سياسة الخصوصية',
+      supplierTermsTitle: 'شروط وأحكام الموردين',
       switchToPrivacy: 'تبحث عن سياسة الخصوصية؟',
       switchToPrivacyLink: 'عرض سياسة الخصوصية',
       switchToTerms: 'تبحث عن الشروط والأحكام؟',
