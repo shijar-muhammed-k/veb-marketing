@@ -73,8 +73,8 @@ export default function TermsAndConditions({ onNavigate }) {
               }}
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                <polyline points="9 22 9 12 15 12 15 22"/>
+                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
               </svg>
               {t.legalCommon.home}
             </a>
@@ -148,7 +148,7 @@ export default function TermsAndConditions({ onNavigate }) {
                   }}
                 >
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                   </svg>
                   {t.legalCommon.switchToPrivacyLink} &rarr;
                 </a>
@@ -160,9 +160,9 @@ export default function TermsAndConditions({ onNavigate }) {
               {/* Draft Notice Box */}
               <div className="legal-notice-box">
                 <svg className="legal-notice-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
-                  <line x1="12" y1="9" x2="12" y2="13"/>
-                  <line x1="12" y1="17" x2="12.01" y2="17"/>
+                  <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                  <line x1="12" y1="9" x2="12" y2="13" />
+                  <line x1="12" y1="17" x2="12.01" y2="17" />
                 </svg>
                 <div>
                   <div className="legal-notice-title">Draft for Legal Review</div>
@@ -390,7 +390,7 @@ export default function TermsAndConditions({ onNavigate }) {
                   <strong>8.2</strong> VEB maintains a corresponding Buyer reliability score reflecting factors including payment timeliness and order-fulfilment conduct. Buyer reliability scores are shown only to Suppliers who have received an RFQ from that Buyer and are never displayed publicly or to other Buyers.
                 </p>
                 <p className="legal-p">
-                  <strong>8.3</strong> Scores are generated from Platform transaction data and provided for informational purposes; VEB does not guarantee their completeness or accuracy and is not liable for sourcing or commercial decisions made in reliance on them. Users may request a review of their own score by contacting VEB at <a href="mailto:info@vebqatar.com" style={{ color: 'var(--teal-hover)', textDecoration: 'underline' }}>info@vebqatar.com</a>.
+                  <strong>8.3</strong> Scores are generated from Platform transaction data and provided for informational purposes; VEB does not guarantee their completeness or accuracy and is not liable for sourcing or commercial decisions made in reliance on them. Users may request a review of their own score by contacting VEB at <a href="mailto:support@mail.vebqatar.com" style={{ color: 'var(--teal-hover)', textDecoration: 'underline' }}>support@mail.vebqatar.com</a>.
                 </p>
               </section>
 

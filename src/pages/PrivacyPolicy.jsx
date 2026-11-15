@@ -66,8 +66,8 @@ export default function PrivacyPolicy({ onNavigate }) {
               }}
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                <polyline points="9 22 9 12 15 12 15 22"/>
+                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
               </svg>
               {t.legalCommon.home}
             </a>
@@ -141,10 +141,10 @@ export default function PrivacyPolicy({ onNavigate }) {
                   }}
                 >
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                    <polyline points="14 2 14 8 20 8"/>
-                    <line x1="16" y1="13" x2="8" y2="13"/>
-                    <line x1="16" y1="17" x2="8" y2="17"/>
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
                   </svg>
                   {t.legalCommon.switchToTermsLink} &rarr;
                 </a>
@@ -328,7 +328,7 @@ export default function PrivacyPolicy({ onNavigate }) {
                   <h2 className="legal-section-title">Your Rights</h2>
                 </div>
                 <p className="legal-p">
-                  Subject to the PDPPL, you have the right to access the personal data we hold about you, request correction of inaccurate or incomplete data, request deletion of your data (subject to our legitimate retention needs), object to certain processing including direct marketing, and request that we restrict processing in certain circumstances. To exercise these rights, contact us at <a href="mailto:info@vebqatar.com" style={{ color: 'var(--teal-hover)', textDecoration: 'underline' }}>info@vebqatar.com</a>. We will respond within the timeframe required by applicable law.
+                  Subject to the PDPPL, you have the right to access the personal data we hold about you, request correction of inaccurate or incomplete data, request deletion of your data (subject to our legitimate retention needs), object to certain processing including direct marketing, and request that we restrict processing in certain circumstances. To exercise these rights, contact us at <a href="mailto:support@mail.vebqatar.com" style={{ color: 'var(--teal-hover)', textDecoration: 'underline' }}>support@mail.vebqatar.com</a>. We will respond within the timeframe required by applicable law.
                 </p>
               </section>
 
@@ -402,7 +402,7 @@ export default function PrivacyPolicy({ onNavigate }) {
                     </div>
                     <div className="legal-contact-detail">
                       <strong>Data Protection Contact</strong>
-                      <a href="mailto:info@vebqatar.com">info@vebqatar.com</a>
+                      <a href="mailto:support@mail.vebqatar.com">support@mail.vebqatar.com</a>
                     </div>
                   </div>
                 </div>
