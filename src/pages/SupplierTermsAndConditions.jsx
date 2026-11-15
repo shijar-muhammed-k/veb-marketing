@@ -105,7 +105,7 @@ export default function SupplierTermsAndConditions({ onNavigate }) {
             </div>
             <div className="legal-meta-item">
               <span>{isRTL ? 'تاريخ السريان:' : 'Effective Date:'}</span>
-              <strong>[Effective Date]</strong>
+              <strong>{isRTL ? 'أكتوبر 2026' : 'October 2026'}</strong>
             </div>
           </div>
         </div>
