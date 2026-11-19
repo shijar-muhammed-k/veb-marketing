@@ -47,7 +47,7 @@ export default function Navbar({
           onClick={(e) => handleNavLink(e, '/', '')}
           aria-label="VEB Home"
         >
-          <img src="/assets/veb-logo.svg" alt="VEB Logo" style={{ width: '125px' }} />
+          <img src="/assets/veb-logo.svg" alt="VEB Logo" className="nav-logo-img" />
         </a>
 
         <ul className="nav-links">
@@ -77,8 +77,7 @@ export default function Navbar({
           <LanguageToggle />
 
           <a
-            className="btn btn-outline"
-            style={{ minWidth: '120px' }}
+            className="btn btn-outline nav-btn nav-btn-login"
             href={loginUrl}
             target="_blank"
             rel="noopener noreferrer"
@@ -86,8 +85,7 @@ export default function Navbar({
             {t.nav.login}
           </a>
           <a
-            className="btn btn-dark"
-            style={{ minWidth: '120px' }}
+            className="btn btn-dark nav-btn nav-btn-contact"
             href="#contact"
             onClick={handleContactClick}
           >

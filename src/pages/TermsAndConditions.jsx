@@ -1,63 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import '../styles/legal.css';
 
-const SECTIONS = [
-  { id: 'section-1', title: '1. Introduction and Acceptance', titleAr: '١. المقدمة والموافقة' },
-  { id: 'section-2', title: '2. Definitions', titleAr: '٢. التعريفات والمصطلحات' },
-  { id: 'section-3', title: '3. Eligibility and Registration', titleAr: '٣. الأهلية والتسجيل' },
-  { id: 'section-4', title: '4. Role of the Platform', titleAr: '٤. دور المنصة وطبيعتها' },
-  { id: 'section-5', title: '5. Buyer and Supplier Obligations', titleAr: '٥. التزامات المشترين والموردين' },
-  { id: 'section-6', title: '6. Prohibited Conduct', titleAr: '٦. السلوكيات المحظورة' },
-  { id: 'section-7', title: '7. RFQ, Quotation, and Order Process', titleAr: '٧. طلبات الأسعار والترسية' },
-  { id: 'section-8', title: '8. Scoring Systems', titleAr: '٨. نظام التقييم والدرجات' },
-  { id: 'section-9', title: '9. Fees and Payment', titleAr: '٩. الرسوم وطرق الدفع' },
-  { id: 'section-10', title: '10. Escrow Service', titleAr: '١٠. خدمة حساب الضمان المالي' },
-  { id: 'section-11', title: '11. Dispute Resolution Between Users', titleAr: '١١. تسوية النزاعات بين المستخدمين' },
-  { id: 'section-12', title: '12. Intellectual Property', titleAr: '١٢. حقوق الملكية الفكرية' },
-  { id: 'section-13', title: '13. Confidentiality', titleAr: '١٣. السرية وحماية المعلومات' },
-  { id: 'section-14', title: '14. Disclaimers', titleAr: '١٤. إخلاء المسؤولية والضمانات' },
-  { id: 'section-15', title: '15. Limitation of Liability', titleAr: '١٥. حدود المسؤولية القانونية' },
-  { id: 'section-16', title: '16. Indemnification', titleAr: '١٦. التعويض وإبراء الذمة' },
-  { id: 'section-17', title: '17. Suspension and Termination', titleAr: '١٧. التعليق وإنهاء الحساب' },
-  { id: 'section-18', title: '18. Governing Law & Arbitration', titleAr: '١٨. القانون الحاكم والتحكيم' },
-  { id: 'section-19', title: '19. Data Protection', titleAr: '١٩. حماية وخصوصية البيانات' },
-  { id: 'section-20', title: '20. Force Majeure', titleAr: '٢٠. القوة القاهرة والظروف الطارئة' },
-  { id: 'section-21', title: '21. Amendments', titleAr: '٢١. تعديل الشروط والأحكام' },
-  { id: 'section-22', title: '22. General Provisions', titleAr: '٢٢. أحكام عامة وختامية' },
-  { id: 'section-23', title: '23. Contact Details', titleAr: '٢٣. تفاصيل الاتصال والتواصل' }
-];
-
 export default function TermsAndConditions({ onNavigate }) {
   const { lang, t, isRTL } = useLanguage();
-  const [activeSection, setActiveSection] = useState('section-1');
 
   useEffect(() => {
     window.scrollTo(0, 0);
-
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 140;
-      for (let i = SECTIONS.length - 1; i >= 0; i--) {
-        const el = document.getElementById(SECTIONS[i].id);
-        if (el && el.offsetTop <= scrollPosition) {
-          setActiveSection(SECTIONS[i].id);
-          break;
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const handleTocClick = (e, id) => {
-    e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setActiveSection(id);
-    }
-  };
 
   return (
     <div className="legal-page">
@@ -82,12 +32,11 @@ export default function TermsAndConditions({ onNavigate }) {
             <span>{t.legalCommon.termsTitle}</span>
           </div>
 
-          <div className="pill">{isRTL ? 'الشروط القانونية' : 'Legal Terms'}</div>
           <h1 className="legal-hero-title">{t.legalCommon.termsTitle}</h1>
           <p className="legal-hero-subtitle">
             {isRTL
               ? 'شروط الاستخدام للمشترين والموردين — شركة فيب لخدمات التجارة الرقمية ذ.م.م. المشغلة لسوق إدارة المرافق والمشتريات الإلكترونية B2B.'
-              : 'Terms of Use for Buyers and Suppliers — VEB For Digital Trade Services W.L.L. Operating the business-to-business facilities management & MRO e-procurement marketplace.'}
+              : <>Terms of Use for Buyers and Suppliers — <span className="veb-entity-title">VEB For Digital Trade Services W.L.L.</span> Operating the business-to-business facilities management &amp; MRO e-procurement marketplace.</>}
           </p>
 
           <div className="legal-meta-bar">
@@ -97,11 +46,15 @@ export default function TermsAndConditions({ onNavigate }) {
             </div>
             <div className="legal-meta-item">
               <span>{isRTL ? 'الجهة:' : 'Entity:'}</span>
-              <strong>{isRTL ? 'شركة فيب لخدمات التجارة الرقمية ذ.م.م (س.ت: 247533)' : 'VEB For Digital Trade Services W.L.L. (CR: 247533)'}</strong>
-            </div>
-            <div className="legal-meta-item">
-              <span>{isRTL ? 'الإصدار:' : 'Version:'}</span>
-              <span className="legal-meta-badge">{isRTL ? 'مسودة 1.0' : 'Draft 1.0'}</span>
+              <strong>
+                {isRTL ? (
+                  'شركة فيب لخدمات التجارة الرقمية ذ.م.م (س.ت: 247533)'
+                ) : (
+                  <>
+                    <span className="veb-entity-title">VEB For Digital Trade Services W.L.L.</span> (CR: 247533)
+                  </>
+                )}
+              </strong>
             </div>
             <div className="legal-meta-item">
               <span>{isRTL ? 'تاريخ السريان:' : 'Effective Date:'}</span>
@@ -115,71 +68,15 @@ export default function TermsAndConditions({ onNavigate }) {
       <div className="legal-body">
         <div className="wrap">
           <div className="legal-layout">
-            {/* Sticky Navigation Sidebar */}
-            <aside className="legal-sidebar">
-              <div className="legal-sidebar-header">
-                <span>{t.legalCommon.tableOfContents}</span>
-                <span className="legal-meta-badge">{SECTIONS.length} {isRTL ? 'بنداً' : 'Sections'}</span>
-              </div>
-              <ul className="legal-toc-list">
-                {SECTIONS.map((sec) => (
-                  <li
-                    key={sec.id}
-                    className={`legal-toc-item ${activeSection === sec.id ? 'active' : ''}`}
-                  >
-                    <a
-                      href={`#${sec.id}`}
-                      onClick={(e) => handleTocClick(e, sec.id)}
-                    >
-                      {isRTL ? sec.titleAr : sec.title}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="legal-sidebar-switch">
-                <div className="legal-sidebar-switch-title">{t.legalCommon.switchToPrivacy}</div>
-                <a
-                  href={`/${lang}/privacy-policy`}
-                  className="legal-sidebar-switch-link"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (onNavigate) onNavigate('/privacy-policy');
-                  }}
-                >
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                  </svg>
-                  {t.legalCommon.switchToPrivacyLink} &rarr;
-                </a>
-              </div>
-            </aside>
-
             {/* Document Content */}
             <main className="legal-main">
-              {/* Draft Notice Box */}
-              <div className="legal-notice-box">
-                <svg className="legal-notice-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
-                  <line x1="12" y1="9" x2="12" y2="13" />
-                  <line x1="12" y1="17" x2="12.01" y2="17" />
-                </svg>
-                <div>
-                  <div className="legal-notice-title">Draft for Legal Review</div>
-                  <div className="legal-notice-text">
-                    This document is a working template prepared to accelerate the drafting process. It is not a substitute for advice from a Qatar-licensed lawyer. All bracketed placeholders, the arbitration/venue clause, fee references, and data-protection provisions are aligned with current Qatari law (including Law No. 13 of 2016 and MOCI/MCIT guidance).
-                  </div>
-                </div>
-              </div>
-
               {/* Section 1 */}
               <section id="section-1" className="legal-section">
                 <div className="legal-section-header">
-                  <span className="legal-section-number">01</span>
-                  <h2 className="legal-section-title">Introduction and Acceptance</h2>
+                  <h2 className="legal-section-title">1. Introduction and Acceptance</h2>
                 </div>
                 <p className="legal-p">
-                  Welcome to VEB, the business-to-business e-procurement marketplace operated by <strong>VEB For Digital Trade Services W.L.L.</strong> (&ldquo;VEB,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or the &ldquo;Platform&rdquo;), connecting compliance-verified suppliers with buyers operating in Qatar&rsquo;s facilities management (FM) and maintenance, repair, and operations (MRO) sector. These Terms and Conditions (&ldquo;Terms&rdquo;) govern access to and use of the Platform, including the website, mobile applications, and related services (collectively, the &ldquo;Services&rdquo;).
+                  Welcome to VEB, the business-to-business e-procurement marketplace operated by <strong><span className="veb-entity-title">VEB For Digital Trade Services W.L.L.</span></strong> (&ldquo;VEB,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or the &ldquo;Platform&rdquo;), connecting compliance-verified suppliers with buyers operating in Qatar&rsquo;s facilities management (FM) and maintenance, repair, and operations (MRO) sector. These Terms and Conditions (&ldquo;Terms&rdquo;) govern access to and use of the Platform, including the website, mobile applications, and related services (collectively, the &ldquo;Services&rdquo;).
                 </p>
                 <p className="legal-p">
                   By creating an account, accessing, or using the Services, you (&ldquo;User,&rdquo; &ldquo;you&rdquo;) agree to be bound by these Terms and by our Privacy Policy, which is incorporated by reference. If you are registering on behalf of a company or other legal entity, you represent that you have authority to bind that entity, and &ldquo;you&rdquo; refers to that entity.
@@ -596,14 +493,15 @@ export default function TermsAndConditions({ onNavigate }) {
               {/* Section 23 */}
               <section id="section-23" className="legal-section">
                 <div className="legal-section-header">
-                  <span className="legal-section-number">23</span>
-                  <h2 className="legal-section-title">Contact</h2>
+                  <h2 className="legal-section-title">23. Contact Details</h2>
                 </div>
                 <p className="legal-p">
                   If you have questions or concerns regarding these Terms and Conditions, please contact us:
                 </p>
                 <div className="legal-contact-card">
-                  <div className="legal-contact-company">VEB For Digital Trade Services W.L.L.</div>
+                  <div className="legal-contact-company">
+                    <span className="veb-entity-title">VEB For Digital Trade Services W.L.L.</span>
+                  </div>
                   <div className="legal-contact-grid">
                     <div className="legal-contact-detail">
                       <strong>Office Address</strong>
@@ -624,23 +522,6 @@ export default function TermsAndConditions({ onNavigate }) {
                   </div>
                 </div>
               </section>
-
-              {/* Switch Banner */}
-              <div className="legal-switch-banner">
-                <div className="legal-switch-banner-text">
-                  <h4>Looking for our Privacy Policy?</h4>
-                  <p>Read how VEB collects, uses, and safeguards personal data under Qatar&rsquo;s Law No. 13 of 2016.</p>
-                </div>
-                <button
-                  type="button"
-                  className="btn btn-teal"
-                  onClick={() => {
-                    if (onNavigate) onNavigate('/privacy-policy');
-                  }}
-                >
-                  View Privacy Policy &rarr;
-                </button>
-              </div>
             </main>
           </div>
         </div>

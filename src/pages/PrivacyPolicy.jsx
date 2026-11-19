@@ -1,56 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import '../styles/legal.css';
 
-const SECTIONS = [
-  { id: 'section-1', title: '1. Introduction', titleAr: '١. المقدمة التمهيدية' },
-  { id: 'section-2', title: '2. Data Controller', titleAr: '٢. الجهة المتحكمة بالبيانات' },
-  { id: 'section-3', title: '3. Scope', titleAr: '٣. نطاق سريان السياسة' },
-  { id: 'section-4', title: '4. Personal Data We Collect', titleAr: '٤. فئات البيانات الشخصية التي نجمعها' },
-  { id: 'section-5', title: '5. How We Use Personal Data', titleAr: '٥. كيف نستخدم ونعالج البيانات' },
-  { id: 'section-6', title: '6. Legal Basis for Processing', titleAr: '٦. الأساس القانوني للمعالجة' },
-  { id: 'section-7', title: '7. How We Share Personal Data', titleAr: '٧. مشاركة البيانات مع أطراف ثالثة' },
-  { id: 'section-8', title: '8. Cross-Border Transfers', titleAr: '٨. نقل البيانات خارج دولة قطر' },
-  { id: 'section-9', title: '9. Data Retention', titleAr: '٩. فترات الاحتفاظ بالبيانات' },
-  { id: 'section-10', title: '10. Data Security', titleAr: '١٠. تدابير أمن وحماية البيانات' },
-  { id: 'section-11', title: '11. Your Rights', titleAr: '١١. حقوقك القانونية كصاحب بيانات' },
-  { id: 'section-12', title: '12. Cookies & Tracking', titleAr: '١٢. ملفات تعريف الارتباط والتقنيات المشابهة' },
-  { id: 'section-13', title: '13. Children’s Data', titleAr: '١٣. بيانات القُصّر والأطفال' },
-  { id: 'section-14', title: '14. Data Breach Notification', titleAr: '١٤. الإشعار بانتهاك أمن البيانات' },
-  { id: 'section-15', title: '15. Changes to This Policy', titleAr: '١٥. التحديثات والتعديلات على السياسة' },
-  { id: 'section-16', title: '16. Contact Us', titleAr: '١٦. تفاصيل التواصل والاستفسارات' }
-];
-
 export default function PrivacyPolicy({ onNavigate }) {
   const { lang, t, isRTL } = useLanguage();
-  const [activeSection, setActiveSection] = useState('section-1');
 
   useEffect(() => {
     window.scrollTo(0, 0);
-
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 140;
-      for (let i = SECTIONS.length - 1; i >= 0; i--) {
-        const el = document.getElementById(SECTIONS[i].id);
-        if (el && el.offsetTop <= scrollPosition) {
-          setActiveSection(SECTIONS[i].id);
-          break;
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const handleTocClick = (e, id) => {
-    e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setActiveSection(id);
-    }
-  };
 
   return (
     <div className="legal-page">
@@ -75,12 +32,11 @@ export default function PrivacyPolicy({ onNavigate }) {
             <span>{t.legalCommon.privacyTitle}</span>
           </div>
 
-          <div className="pill">{isRTL ? 'حماية البيانات' : 'Data Protection'}</div>
           <h1 className="legal-hero-title">{t.legalCommon.privacyTitle}</h1>
           <p className="legal-hero-subtitle">
             {isRTL
               ? 'كيف تقوم منصة فيب بجمع واستخدام وحماية البيانات الشخصية — شركة فيب لخدمات التجارة الرقمية ذ.م.م المشغلة لسوق إدارة المرافق والمشتريات الإلكترونية B2B.'
-              : 'How VEB Collects, Uses, and Protects Personal Data — VEB For Digital Trade Services W.L.L. Operating the business-to-business facilities management & MRO e-procurement marketplace.'}
+              : <>How VEB Collects, Uses, and Protects Personal Data — <span className="veb-entity-title">VEB For Digital Trade Services W.L.L.</span> Operating the business-to-business facilities management &amp; MRO e-procurement marketplace.</>}
           </p>
 
           <div className="legal-meta-bar">
@@ -90,11 +46,15 @@ export default function PrivacyPolicy({ onNavigate }) {
             </div>
             <div className="legal-meta-item">
               <span>{isRTL ? 'الجهة:' : 'Entity:'}</span>
-              <strong>{isRTL ? 'شركة فيب لخدمات التجارة الرقمية ذ.م.م (س.ت: 247533)' : 'VEB For Digital Trade Services W.L.L. (CR: 247533)'}</strong>
-            </div>
-            <div className="legal-meta-item">
-              <span>{isRTL ? 'الإصدار:' : 'Version:'}</span>
-              <span className="legal-meta-badge">{isRTL ? 'مسودة 1.0' : 'Draft 1.0'}</span>
+              <strong>
+                {isRTL ? (
+                  'شركة فيب لخدمات التجارة الرقمية ذ.م.م (س.ت: 247533)'
+                ) : (
+                  <>
+                    <span className="veb-entity-title">VEB For Digital Trade Services W.L.L.</span> (CR: 247533)
+                  </>
+                )}
+              </strong>
             </div>
             <div className="legal-meta-item">
               <span>{isRTL ? 'تاريخ السريان:' : 'Effective Date:'}</span>
@@ -108,58 +68,8 @@ export default function PrivacyPolicy({ onNavigate }) {
       <div className="legal-body">
         <div className="wrap">
           <div className="legal-layout">
-            {/* Sticky Navigation Sidebar */}
-            <aside className="legal-sidebar">
-              <div className="legal-sidebar-header">
-                <span>{t.legalCommon.tableOfContents}</span>
-                <span className="legal-meta-badge">{SECTIONS.length} {isRTL ? 'بنداً' : 'Sections'}</span>
-              </div>
-              <ul className="legal-toc-list">
-                {SECTIONS.map((sec) => (
-                  <li
-                    key={sec.id}
-                    className={`legal-toc-item ${activeSection === sec.id ? 'active' : ''}`}
-                  >
-                    <a
-                      href={`#${sec.id}`}
-                      onClick={(e) => handleTocClick(e, sec.id)}
-                    >
-                      {isRTL ? sec.titleAr : sec.title}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="legal-sidebar-switch">
-                <div className="legal-sidebar-switch-title">{t.legalCommon.switchToTerms}</div>
-                <a
-                  href={`/${lang}/terms-and-conditions`}
-                  className="legal-sidebar-switch-link"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (onNavigate) onNavigate('/terms-and-conditions');
-                  }}
-                >
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                    <polyline points="14 2 14 8 20 8" />
-                    <line x1="16" y1="13" x2="8" y2="13" />
-                    <line x1="16" y1="17" x2="8" y2="17" />
-                  </svg>
-                  {t.legalCommon.switchToTermsLink} &rarr;
-                </a>
-              </div>
-            </aside>
-
             {/* Document Content */}
             <main className="legal-main">
-              {/* Compliance Highlight Box */}
-              <div className="legal-highlight-box">
-                <p>
-                  <strong>Regulatory Statement:</strong> This Privacy Policy is issued with reference to Qatar&rsquo;s <strong>Law No. 13 of 2016 on the Protection of Personal Data Privacy (&ldquo;PDPPL&rdquo;)</strong> and guidance issued by the Compliance and Data Protection Department (CDPD) of the Ministry of Communications and Information Technology (MCIT).
-                </p>
-              </div>
-
               {/* Section 1 */}
               <section id="section-1" className="legal-section">
                 <div className="legal-section-header">
@@ -167,7 +77,7 @@ export default function PrivacyPolicy({ onNavigate }) {
                   <h2 className="legal-section-title">Introduction</h2>
                 </div>
                 <p className="legal-p">
-                  This Privacy Policy explains how <strong>VEB For Digital Trade Services W.L.L.</strong> (&ldquo;VEB,&rdquo; &ldquo;we,&rdquo; &ldquo;us&rdquo;) collects, uses, discloses, and protects personal data when Buyers, Suppliers, and other individuals (&ldquo;you&rdquo;) interact with VEB. This Policy should be read together with our Terms and Conditions and is issued with reference to Qatar&rsquo;s Law No. 13 of 2016 on the Protection of Personal Data Privacy (&ldquo;PDPPL&rdquo;) and applicable guidance issued by the Compliance and Data Protection Department (CDPD) of the Ministry of Communications and Information Technology (MCIT).
+                  This Privacy Policy explains how <strong><span className="veb-entity-title">VEB For Digital Trade Services W.L.L.</span></strong> (&ldquo;VEB,&rdquo; &ldquo;we,&rdquo; &ldquo;us&rdquo;) collects, uses, discloses, and protects personal data when Buyers, Suppliers, and other individuals (&ldquo;you&rdquo;) interact with VEB. This Policy should be read together with our Terms and Conditions and is issued with reference to Qatar&rsquo;s Law No. 13 of 2016 on the Protection of Personal Data Privacy (&ldquo;PDPPL&rdquo;) and applicable guidance issued by the Compliance and Data Protection Department (CDPD) of the Ministry of Communications and Information Technology (MCIT).
                 </p>
               </section>
 
@@ -178,7 +88,7 @@ export default function PrivacyPolicy({ onNavigate }) {
                   <h2 className="legal-section-title">Data Controller</h2>
                 </div>
                 <p className="legal-p">
-                  <strong>VEB For Digital Trade Services W.L.L.</strong>, with its registered office at Al Matar Center, 1st Floor, Office 107, Doha, Qatar (Commercial Registration No. 247533), is the data controller responsible for personal data processed through the Platform, unless stated otherwise for a specific service.
+                  <strong><span className="veb-entity-title">VEB For Digital Trade Services W.L.L.</span></strong>, with its registered office at Al Matar Center, 1st Floor, Office 107, Doha, Qatar (Commercial Registration No. 247533), is the data controller responsible for personal data processed through the Platform, unless stated otherwise for a specific service.
                 </p>
               </section>
 
@@ -379,14 +289,15 @@ export default function PrivacyPolicy({ onNavigate }) {
               {/* Section 16 */}
               <section id="section-16" className="legal-section">
                 <div className="legal-section-header">
-                  <span className="legal-section-number">16</span>
-                  <h2 className="legal-section-title">Contact Us</h2>
+                  <h2 className="legal-section-title">16. Contact Us</h2>
                 </div>
                 <p className="legal-p">
                   For questions about this Privacy Policy or to exercise your data protection rights, please contact our Data Protection Office:
                 </p>
                 <div className="legal-contact-card">
-                  <div className="legal-contact-company">VEB For Digital Trade Services W.L.L.</div>
+                  <div className="legal-contact-company">
+                    <span className="veb-entity-title">VEB For Digital Trade Services W.L.L.</span>
+                  </div>
                   <div className="legal-contact-grid">
                     <div className="legal-contact-detail">
                       <strong>Office Address</strong>
@@ -407,23 +318,6 @@ export default function PrivacyPolicy({ onNavigate }) {
                   </div>
                 </div>
               </section>
-
-              {/* Switch Banner */}
-              <div className="legal-switch-banner">
-                <div className="legal-switch-banner-text">
-                  <h4>Looking for our Terms and Conditions?</h4>
-                  <p>Review the marketplace rules, eligibility, scoring systems, and commercial commitments.</p>
-                </div>
-                <button
-                  type="button"
-                  className="btn btn-teal"
-                  onClick={() => {
-                    if (onNavigate) onNavigate('/terms-and-conditions');
-                  }}
-                >
-                  View Terms &amp; Conditions &rarr;
-                </button>
-              </div>
             </main>
           </div>
         </div>

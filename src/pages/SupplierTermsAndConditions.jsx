@@ -1,61 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import '../styles/legal.css';
 
-const SECTIONS = [
-  { id: 'section-1', title: '1. Introduction and Acceptance', titleAr: '١. المقدمة والموافقة' },
-  { id: 'section-2', title: '2. Definitions', titleAr: '٢. التعريفات والمصطلحات' },
-  { id: 'section-3', title: '3. Supplier Eligibility and Registration', titleAr: '٣. أهلية وتسجيل الموردين' },
-  { id: 'section-4', title: '4. Compliance Verification and Ongoing Compliance', titleAr: '٤. التحقق من الامتثال والالتزام المستمر' },
-  { id: 'section-5', title: '5. Supplier’s Status and Role of Platform', titleAr: '٥. الوضع القانوني للمورد ودور المنصة' },
-  { id: 'section-6', title: '6. Quotations and Orders', titleAr: '٦. عروض الأسعار وأوامر التوريد' },
-  { id: 'section-7', title: '7. Facilitation & Coordination (F&C) Fee', titleAr: '٧. رسوم التسهيل والتنسيق (F&C)' },
-  { id: 'section-8', title: '8. Payment Milestones', titleAr: '٨. مراحل وإجراءات الدفع' },
-  { id: 'section-9', title: '9. Performance Standards', titleAr: '٩. معايير ومستويات الأداء' },
-  { id: 'section-10', title: '10. Scoring & Buyer Reliability Info', titleAr: '١٠. تقييم الأداء وموثوقية المشترين' },
-  { id: 'section-11', title: '11. Disputes', titleAr: '١١. تسوية النزاعات' },
-  { id: 'section-12', title: '12. Prohibited Conduct', titleAr: '١٢. السلوكيات المحظورة' },
-  { id: 'section-13', title: '13. Confidentiality and Data Protection', titleAr: '١٣. السرية وحماية البيانات' },
-  { id: 'section-14', title: '14. Intellectual Property and Content', titleAr: '١٤. الملكية الفكرية والمحتوى' },
-  { id: 'section-15', title: '15. Disclaimers & Limitation of Liability', titleAr: '١٥. إخلاء وحدود المسؤولية' },
-  { id: 'section-16', title: '16. Indemnification', titleAr: '١٦. التعويض وإبراء الذمة' },
-  { id: 'section-17', title: '17. Suspension and Termination', titleAr: '١٧. التعليق وإنهاء الحساب' },
-  { id: 'section-18', title: '18. Governing Law and Arbitration', titleAr: '١8. القانون الحاكم والتحكيم' },
-  { id: 'section-19', title: '19. Amendments', titleAr: '١٩. التعديلات' },
-  { id: 'section-20', title: '20. General Provisions', titleAr: '٢٠. أحكام عامة' },
-  { id: 'section-21', title: '21. Contact', titleAr: '٢١. معلومات التواصل' }
-];
-
 export default function SupplierTermsAndConditions({ onNavigate }) {
   const { lang, t, isRTL } = useLanguage();
-  const [activeSection, setActiveSection] = useState('section-1');
 
   useEffect(() => {
     window.scrollTo(0, 0);
-
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 140;
-      for (let i = SECTIONS.length - 1; i >= 0; i--) {
-        const el = document.getElementById(SECTIONS[i].id);
-        if (el && el.offsetTop <= scrollPosition) {
-          setActiveSection(SECTIONS[i].id);
-          break;
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const handleTocClick = (e, id) => {
-    e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setActiveSection(id);
-    }
-  };
 
   return (
     <div className="legal-page">
@@ -80,14 +32,13 @@ export default function SupplierTermsAndConditions({ onNavigate }) {
             <span>{isRTL ? 'شروط وأحكام الموردين' : 'Supplier Terms and Conditions'}</span>
           </div>
 
-          <div className="pill">{isRTL ? 'شروط الموردين الرسمية' : 'Supplier Agreement'}</div>
           <h1 className="legal-hero-title">
             {isRTL ? 'شروط وأحكام تسجيل ومشاركة الموردين' : 'Supplier Terms and Conditions'}
           </h1>
           <p className="legal-hero-subtitle">
             {isRTL
               ? 'شروط التسجيل والمشاركة للموردين في نظام فيب للمشتريات الإلكترونية B2B — إدارة المرافق، الصيانة والتشغيل (MRO) — شركة فيب لخدمات التجارة الرقمية ذ.م.م.'
-              : 'Terms of Registration and Participation for Suppliers — VEB B2B E-Procurement System (Facilities Management & MRO) operated by VEB For Digital Trade Services W.L.L.'}
+              : <>Terms of Registration and Participation for Suppliers — VEB B2B E-Procurement System (Facilities Management &amp; MRO) operated by <span className="veb-entity-title">VEB For Digital Trade Services W.L.L.</span></>}
           </p>
 
           <div className="legal-meta-bar">
@@ -97,11 +48,15 @@ export default function SupplierTermsAndConditions({ onNavigate }) {
             </div>
             <div className="legal-meta-item">
               <span>{isRTL ? 'الجهة المشغلة:' : 'Entity:'}</span>
-              <strong>{isRTL ? 'شركة فيب لخدمات التجارة الرقمية ذ.م.م (س.ت: 247533)' : 'VEB For Digital Trade Services W.L.L. (CR: 247533)'}</strong>
-            </div>
-            <div className="legal-meta-item">
-              <span>{isRTL ? 'الإصدار:' : 'Version:'}</span>
-              <span className="legal-meta-badge">{isRTL ? 'مسودة 1.0' : 'Draft 1.0'}</span>
+              <strong>
+                {isRTL ? (
+                  'شركة فيب لخدمات التجارة الرقمية ذ.م.م (س.ت: 247533)'
+                ) : (
+                  <>
+                    <span className="veb-entity-title">VEB For Digital Trade Services W.L.L.</span> (CR: 247533)
+                  </>
+                )}
+              </strong>
             </div>
             <div className="legal-meta-item">
               <span>{isRTL ? 'تاريخ السريان:' : 'Effective Date:'}</span>
@@ -115,88 +70,15 @@ export default function SupplierTermsAndConditions({ onNavigate }) {
       <div className="legal-body">
         <div className="wrap">
           <div className="legal-layout">
-            {/* Sticky Navigation Sidebar */}
-            <aside className="legal-sidebar">
-              <div className="legal-sidebar-header">
-                <span>{t.legalCommon.tableOfContents}</span>
-                <span className="legal-meta-badge">{SECTIONS.length} {isRTL ? 'بنداً' : 'Sections'}</span>
-              </div>
-              <ul className="legal-toc-list">
-                {SECTIONS.map((sec) => (
-                  <li
-                    key={sec.id}
-                    className={`legal-toc-item ${activeSection === sec.id ? 'active' : ''}`}
-                  >
-                    <a
-                      href={`#${sec.id}`}
-                      onClick={(e) => handleTocClick(e, sec.id)}
-                    >
-                      {isRTL ? sec.titleAr : sec.title}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="legal-sidebar-switch">
-                <div className="legal-sidebar-switch-title">
-                  {isRTL ? 'روابط قانونية ذات صلة:' : 'Related Legal Documents:'}
-                </div>
-                <a
-                  href={`/${lang}/terms-and-conditions`}
-                  className="legal-sidebar-switch-link"
-                  style={{ marginBottom: '8px' }}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (onNavigate) onNavigate('/terms-and-conditions');
-                  }}
-                >
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                    <polyline points="14 2 14 8 20 8" />
-                  </svg>
-                  {isRTL ? 'الشروط والأحكام العامة' : 'General Terms & Conditions'} &rarr;
-                </a>
-                <a
-                  href={`/${lang}/privacy-policy`}
-                  className="legal-sidebar-switch-link"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (onNavigate) onNavigate('/privacy-policy');
-                  }}
-                >
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                  </svg>
-                  {t.legalCommon.switchToPrivacyLink} &rarr;
-                </a>
-              </div>
-            </aside>
-
             {/* Document Content */}
             <main className="legal-main">
-              {/* Draft Notice Box */}
-              <div className="legal-notice-box">
-                <svg className="legal-notice-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
-                  <line x1="12" y1="9" x2="12" y2="13" />
-                  <line x1="12" y1="17" x2="12.01" y2="17" />
-                </svg>
-                <div>
-                  <div className="legal-notice-title">Draft 1.0 — Terms of Registration and Participation for Suppliers</div>
-                  <div className="legal-notice-text">
-                    This document governs the registration and participation of suppliers on the VEB B2B E-Procurement System. These Supplier Terms apply together with the general VEB Terms and Conditions and the Privacy Policy. If there is a conflict between the general Terms and Conditions and these Supplier Terms on a matter relating to suppliers, these Supplier Terms prevail.
-                  </div>
-                </div>
-              </div>
-
               {/* Section 1 */}
               <section id="section-1" className="legal-section">
                 <div className="legal-section-header">
-                  <span className="legal-section-number">01</span>
-                  <h2 className="legal-section-title">Introduction and Acceptance</h2>
+                  <h2 className="legal-section-title">1. Introduction and Acceptance</h2>
                 </div>
                 <p className="legal-p">
-                  These Supplier Terms and Conditions (&ldquo;Supplier Terms&rdquo;) govern the registration and participation of suppliers on the VEB business-to-business e-procurement System operated by <strong>VEB For Digital Trade Services W.L.L.</strong> (&ldquo;VEB,&rdquo; &ldquo;we,&rdquo; &ldquo;us&rdquo;) at <a href="https://www.vebqatar.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--teal-hover)', fontWeight: 600 }}>www.vebqatar.com</a> and through related applications and services (the &ldquo;Platform&rdquo;). The Platform connects compliance-verified suppliers with buyers in Qatar&rsquo;s facilities management (FM) and maintenance, repair and operations (MRO) sector.
+                  These Supplier Terms and Conditions (&ldquo;Supplier Terms&rdquo;) govern the registration and participation of suppliers on the VEB business-to-business e-procurement System operated by <strong><span className="veb-entity-title">VEB For Digital Trade Services W.L.L.</span></strong> (&ldquo;VEB,&rdquo; &ldquo;we,&rdquo; &ldquo;us&rdquo;) at <a href="https://www.vebqatar.com" target="_blank" rel="noopener noreferrer" style={{ color: '#1f2937', textDecoration: 'underline', fontWeight: 600 }}>www.vebqatar.com</a> and through related applications and services (the &ldquo;Platform&rdquo;). The Platform connects compliance-verified suppliers with buyers in Qatar&rsquo;s facilities management (FM) and maintenance, repair and operations (MRO) sector.
                 </p>
                 <p className="legal-p">
                   By registering as a supplier, ticking the acceptance box, or using the Platform to submit a quotation or perform an Order, the company or entity you represent (&ldquo;Supplier,&rdquo; &ldquo;you&rdquo;) agrees to be bound by these Supplier Terms. You confirm that the individual completing registration has authority to bind the Supplier.
@@ -956,14 +838,15 @@ export default function SupplierTermsAndConditions({ onNavigate }) {
               {/* Section 21 */}
               <section id="section-21" className="legal-section">
                 <div className="legal-section-header">
-                  <span className="legal-section-number">21</span>
-                  <h2 className="legal-section-title">Contact</h2>
+                  <h2 className="legal-section-title">21. Contact</h2>
                 </div>
                 <p className="legal-p">
                   For questions or notices regarding these Supplier Terms and Conditions, please contact:
                 </p>
                 <div className="legal-contact-card">
-                  <div className="legal-contact-company">VEB For Digital Trade Services W.L.L.</div>
+                  <div className="legal-contact-company">
+                    <span className="veb-entity-title">VEB For Digital Trade Services W.L.L.</span>
+                  </div>
                   <div className="legal-contact-grid">
                     <div className="legal-contact-detail">
                       <strong>Office Address</strong>
@@ -984,23 +867,6 @@ export default function SupplierTermsAndConditions({ onNavigate }) {
                   </div>
                 </div>
               </section>
-
-              {/* Cross-Navigation Banner */}
-              <div className="legal-switch-banner">
-                <div className="legal-switch-banner-text">
-                  <h4>Looking for General Platform Terms?</h4>
-                  <p>Read the comprehensive Terms and Conditions governing all buyers and suppliers on the VEB platform.</p>
-                </div>
-                <button
-                  type="button"
-                  className="btn btn-teal"
-                  onClick={() => {
-                    if (onNavigate) onNavigate('/terms-and-conditions');
-                  }}
-                >
-                  View Terms & Conditions &rarr;
-                </button>
-              </div>
             </main>
           </div>
         </div>
