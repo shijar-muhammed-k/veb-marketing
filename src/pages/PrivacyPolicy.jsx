@@ -70,6 +70,12 @@ export default function PrivacyPolicy({ onNavigate }) {
           <div className="legal-layout">
             {/* Document Content */}
             <main className="legal-main">
+              {/* Compliance Highlight Box */}
+              <div className="legal-highlight-box">
+                <p>
+                  <strong>Regulatory Statement:</strong> This Privacy Policy is issued with reference to Qatar&rsquo;s <strong>Law No. 13 of 2016 on the Protection of Personal Data Privacy (&ldquo;PDPPL&rdquo;)</strong> and guidance issued by the Compliance and Data Protection Department (CDPD) of the Ministry of Communications and Information Technology (MCIT).
+                </p>
+              </div>
               {/* Section 1 */}
               <section id="section-1" className="legal-section">
                 <div className="legal-section-header">
