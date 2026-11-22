@@ -32,7 +32,7 @@ export const translations = {
       pill: 'Why VEB',
       title: 'Facility management made simple',
       items: [
-        { value: '500+', label: 'Trusted Suppliers' },
+        // { value: '500+', label: 'Trusted Suppliers' },
         { value: '95%', label: 'Faster Approvals' },
         { value: '3X', label: 'Procurement Efficiency' },
         { value: '100%', label: 'End-To-End Visibility' }
@@ -51,7 +51,7 @@ export const translations = {
       items: [
         {
           title: 'Supplier Management',
-          description: 'Manage all your suppliers from one centralized platform, making onboarding, communication, and performance tracking simple and efficient.',
+          description: 'Manage all your suppliers from one centralized system, making onboarding, communication, and performance tracking simple and efficient.',
           iconAlt: 'Supplier Management Icon'
         },
         {
@@ -216,7 +216,7 @@ export const translations = {
       items: [
         {
           question: 'What is VEB?',
-          answer: 'VEB is a secure digital Procure-to-Pay (P2P) platform that simplifies procurement by managing everything from supplier sourcing to purchase approvals, invoicing, and payments.'
+          answer: 'VEB is a secure digital Procure-to-Pay (P2P) system that simplifies procurement by managing everything from supplier sourcing to purchase approvals, invoicing, and payments.'
         },
         {
           question: 'What industries does VEB support?',
@@ -230,10 +230,10 @@ export const translations = {
           question: 'How does VEB improve procurement efficiency?',
           answer: 'By automating multi-tier approval chains, eliminating manual paper trails, offering real-time spend tracking, and accelerating vendor negotiations with AI insights.'
         },
-        {
-          question: 'Is my business data secure?',
-          answer: 'Yes. All data is encrypted both in transit (TLS 1.3) and at rest (AES-256), hosted in SOC 2 Type II compliant cloud facilities with role-based access control.'
-        }
+        // {
+        //   question: 'Is my business data secure?',
+        //   answer: 'Yes. All data is encrypted both in transit (TLS 1.3) and at rest (AES-256), hosted in SOC 2 Type II compliant cloud facilities with role-based access control.'
+        // }
       ]
     },
     contact: {
@@ -334,7 +334,7 @@ export const translations = {
       pill: 'لماذا فيب',
       title: 'إدارة المرافق أصبحت في غاية البساطة',
       items: [
-        { value: '+500', label: 'مورّد موثوق ومعتمد' },
+        // { value: '+500', label: 'مورّد موثوق ومعتمد' },
         { value: '95%', label: 'اعتمادات وموافقات أسرع' },
         { value: '3X', label: 'مضاعفة كفاءة المشتريات' },
         { value: '100%', label: 'رؤية ومتابعة شاملة' }
@@ -532,10 +532,10 @@ export const translations = {
           question: 'كيف تساهم فيب في رفع كفاءة وخفض تكاليف المشتريات؟',
           answer: 'عبر أتمتة سلاسل الموافقات متعددة المستويات، وإلغاء المعاملات الورقية اليدوية، وتوفير تتبع فوري للنفقات، وتسريع التفاوض مع الموردين بالاعتماد على رؤى الذكاء الاصطناعي.'
         },
-        {
-          question: 'هل بيانات شركتي ومعاملاتي المالية محمية؟',
-          answer: 'نعم، بكل تأكيد. جميع البيانات مشفرة أثناء النقل (TLS 1.3) وأثناء التخزين (AES-256)، ومستضافة في بيئات سحابية متوافقة مع معايير SOC 2 Type II مع التحكم الصارم في الوصول القائم على الأدوار والصلاحيات.'
-        }
+        // {
+        //   question: 'هل بيانات شركتي ومعاملاتي المالية محمية؟',
+        //   answer: 'نعم، بكل تأكيد. جميع البيانات مشفرة أثناء النقل (TLS 1.3) وأثناء التخزين (AES-256)، ومستضافة في بيئات سحابية متوافقة مع معايير SOC 2 Type II مع التحكم الصارم في الوصول القائم على الأدوار والصلاحيات.'
+        // }
       ]
     },
     contact: {

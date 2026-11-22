@@ -113,7 +113,15 @@ function MainApp() {
     };
   }, [lang, setLanguage]);
 
+
   useEffect(() => {
+    const siteUrl = 'https://vebqatar.com/';
+    const pathname = window.location.pathname.replace(/\/+$/, '') || '/';
+
+    // Only the base URL should be indexed
+    const shouldIndex = pathname === '/';
+
+    // Page title
     if (currentRoute === '/terms-and-conditions') {
       document.title = t.meta.termsTitle;
     } else if (currentRoute === '/privacy-policy') {
@@ -124,11 +132,46 @@ function MainApp() {
       document.title = t.meta.title;
     }
 
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute('content', t.meta.description);
+    // Meta description
+    let description = document.querySelector('meta[name="description"]');
+
+    if (!description) {
+      description = document.createElement('meta');
+      description.name = 'description';
+      document.head.appendChild(description);
+    }
+
+    description.content = t.meta.description;
+
+    // Robots indexing control
+    let robots = document.querySelector('meta[name="robots"]');
+
+    if (!robots) {
+      robots = document.createElement('meta');
+      robots.name = 'robots';
+      document.head.appendChild(robots);
+    }
+
+    robots.content = shouldIndex
+      ? 'index, follow'
+      : 'noindex, follow';
+
+    // Canonical URL for homepage only
+    let canonical = document.querySelector('link[rel="canonical"]');
+
+    if (shouldIndex) {
+      if (!canonical) {
+        canonical = document.createElement('link');
+        canonical.rel = 'canonical';
+        document.head.appendChild(canonical);
+      }
+
+      canonical.href = siteUrl;
+    } else {
+      canonical?.remove();
     }
   }, [currentRoute, t]);
+
 
   return (
     <>
