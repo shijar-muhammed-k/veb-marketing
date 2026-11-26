@@ -220,7 +220,7 @@ export const translations = {
         },
         {
           question: 'What industries does VEB support?',
-          answer: 'VEB is tailored for Facility Management, MRO, construction, commercial real estate, logistics, and any asset-heavy enterprise requiring organized multi-vendor procurement.'
+          answer: 'VEB is built for the facility management (FM) and MRO sector. It supports FM service providers, property management companies, and real estate owners and operators sourcing maintenance, repair, and operations supplies'
         },
         {
           question: 'What features does VEB offer?',
@@ -522,7 +522,7 @@ export const translations = {
         },
         {
           question: 'ما هي القطاعات والشركات التي تدعمها منصة فيب؟',
-          answer: 'صُممت فيب خصيصاً لقطاعات إدارة المرافق، والصيانة والتشغيل (MRO)، والمقاولات والإنشاءات، والعقارات التجارية، والخدمات اللوجستية، وكافة الشركات كثيفة الأصول التي تعتمد على توريد متعدد الموردين.'
+          answer: 'صُممت منصة VEB خصيصاً لقطاع إدارة المرافق (FM) وأعمال الصيانة والإصلاح والتشغيل (MRO). وهي تدعم كلاً من مزودي خدمات إدارة المرافق، وشركات إدارة العقارات، وملاك ومشغلي العقارات في الحصول على مستلزمات الصيانة والإصلاح والتشغيل.'
         },
         {
           question: 'ما هي أبرز المزايا التي توفرها المنصة للمستخدمين؟',
