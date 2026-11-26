@@ -269,7 +269,7 @@ export const translations = {
       }
     },
     footer: {
-      description: 'We simplify procurement by connecting buyers with trusted suppliers through a secure, AI-powered platform that streamlines sourcing, purchasing, and supplier management.',
+      description: 'We simplify procurement by connecting buyers with trusted suppliers through a secure, AI-powered system that streamlines sourcing, purchasing, and supplier management.',
       legalHeading: 'Legal & Privacy',
       terms: 'Terms & Conditions',
       privacy: 'Privacy Policy',
